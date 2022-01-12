@@ -1,0 +1,1 @@
+composer install & npm install & copy .env.example .env & php artisan key:generate & php artisan telescope:install & php artisan migrate:fresh & php artisan db:seed & npm run dev
