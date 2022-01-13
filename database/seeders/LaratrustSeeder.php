@@ -38,7 +38,7 @@ class LaratrustSeeder extends Seeder
             ]);
             $permissions = [];
 
-            $this->command->info('Creating Role '. strtoupper($key));
+            $this->command->info('Creating Role ' . strtoupper($key));
 
             // Reading role permission modules
             foreach ($modules as $module => $value) {
@@ -53,24 +53,24 @@ class LaratrustSeeder extends Seeder
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                     ])->id;
 
-                    $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
+                    $this->command->info('Creating Permission to ' . $permissionValue . ' for ' . $module);
                 }
             }
 
             // Attach all permissions to the role
             $role->permissions()->sync($permissions);
-
-            if (Config::get('laratrust_seeder.create_users')) {
-                $this->command->info("Creating '{$key}' user");
-                // Create default user for each role
-                $user = \App\Models\User::create([
-                    'name' => $key,
-                    'email' => $key.'@test.nl',
-                    'password' => bcrypt('Test123$')
-                ]);
-                $user->attachRole($role);
+            if (env("APP_DEBUG")) {
+                if (Config::get('laratrust_seeder.create_users')) {
+                    $this->command->info("Creating '{$key}' user");
+                    // Create default user for each role
+                    $user = \App\Models\User::create([
+                        'name' => $key,
+                        'email' => $key . '@test.nl',
+                        'password' => bcrypt('Test123$')
+                    ]);
+                    $user->attachRole($role);
+                }
             }
-
         }
     }
 
@@ -91,7 +91,7 @@ class LaratrustSeeder extends Seeder
         if (Config::get('laratrust_seeder.truncate_tables')) {
             DB::table('roles')->truncate();
             DB::table('permissions')->truncate();
-            
+
             if (Config::get('laratrust_seeder.create_users')) {
                 $usersTable = (new \App\Models\User)->getTable();
                 DB::table($usersTable)->truncate();
