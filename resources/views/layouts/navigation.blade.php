@@ -1,6 +1,6 @@
 <nav class="flex items-center justify-between bg-gray-800 h-20 shadow-2xl">
-    <div class="logo">
-        <h1 class="text-white ml-4 cursor-pointer text-2xl">Logo here</h1>
+    <div class="logo h-100" >
+        <img src="assets/logo.png">
     </div>
     <ul class="flex">
         <li>
