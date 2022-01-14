@@ -59,6 +59,11 @@
     <section class="mt-5 bg-gray-100">
         <div class="bg-white max-w-5xl px-6 py-16 mx-auto rounded-lg shadow">
             <div class="items-center">
+                @if(Session::has('success'))
+                    <div class="text-green-400 text-center flex flex-col" role="alert">
+                        <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('signup') }}" id="signup" class="w-full bg-white rounded p-6 space-y-4">
                     @csrf
                     <div class="mb-4">

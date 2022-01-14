@@ -13,6 +13,6 @@ class HomeController extends Controller
     {
         $data = $request->all();
         Mail::to(env("OWNER_MAIL"))->send(new signup($data));
-        return 'hi';
+        return redirect('/#signup')->with('success', 'Je aanmelding is verstuurd.');
     }
 }
