@@ -18,6 +18,9 @@ class CreateCarsTable extends Migration
             $table->string('type');
             $table->string('model');
             $table->string('license_plate');
+            $table->string('image')->default('');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
