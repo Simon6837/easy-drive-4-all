@@ -105,7 +105,7 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
+                        <p class="text-sm text-gray-500 px-8">Wil je echt deze auto verwijderen, dit kan niet worden
                             teruggezet.</p>
                 </div>
                 <!--footer-->
