@@ -13,8 +13,8 @@
         </section>
     </header>
 
-    <section class="mt-5 bg-grey rounded-md">
-        <div class="bg-white max-w-5xl px-6 py-16 mx-auto">
+    <section class="mt-5 bg-gray-100">
+        <div class="bg-white max-w-5xl px-6 py-16 mx-auto shadow rounded-lg">
             <div class="items-center">
                 <div class="w-full">
                     <h2 class="text-3xl font-semibold text-gray-800">Over ons</h2>
@@ -40,8 +40,8 @@
         </div>
     </section>
 
-    <section class="mt-5 bg-grey rounded-md">
-        <div id="team" class="bg-white max-w-5xl px-6 py-16 mx-auto text-center">
+    <section class="mt-5 bg-gray-100">
+        <div id="team" class="bg-white max-w-5xl px-6 py-16 mx-auto text-center shadow rounded-lg">
             <h2 class="text-3xl font-semibold text-gray-800">Onze instructeurs</h2>
             <p class="max-w-lg mx-auto mt-4 text-gray-600">Speciaal opgeleid om u te leren rijden</p>
             <div class="grid gap-8 mt-6 md:grid-cols-2 lg:grid-cols-4">
@@ -56,8 +56,8 @@
         </div>
     </section>
 
-    <section class="mt-5 bg-grey rounded-md">
-        <div class="bg-white max-w-5xl px-6 py-16 mx-auto">
+    <section class="mt-5 bg-gray-100">
+        <div class="bg-white max-w-5xl px-6 py-16 mx-auto rounded-lg shadow">
             <div class="items-center">
                 <form method="POST" action="{{ route('signup') }}" id="signup" class="w-full bg-white rounded p-6 space-y-4">
                     @csrf

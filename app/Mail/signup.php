@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 class signup extends Mailable
 {
+    public $data;
     use Queueable, SerializesModels;
 
     /**
@@ -16,9 +17,9 @@ class signup extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +29,7 @@ class signup extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails/signup');
+        $subject = $this->data['firstName'] . ' ' . $this->data['lastName'] . ' wil zich aanmelden';
+        return $this->markdown('emails/signup')->subject($subject)->with(['data' => $this->data]);
     }
 }
