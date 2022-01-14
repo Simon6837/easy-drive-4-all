@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Owner\CarsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //Website
 Route::get('/', function () { return view('/pages.website.home');})->name('home');
 Route::get('/home', function () { return view('/pages.website.home');})->name('homepage');
+Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
 Route::get('/autos', function () { return view('/pages.website.cars');})->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
