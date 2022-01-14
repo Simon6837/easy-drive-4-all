@@ -142,7 +142,7 @@
                 let modal = document.getElementById('modal');
                 modal.style.display = "none";
 
-                window.location.replace(`/owner/cars/delete/${gID}`);
+                window.location.replace(`/cars/delete/${gID}`);
 
                 gID = "";
             }
