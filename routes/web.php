@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,9 @@ Route::get('/home', function () { return view('/pages.website.home');})->name('h
 Route::get('/autos', function () { return view('/pages.website.cars');})->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
-Route::get('/contact', function () { return view('/pages.website.contact');})->name('contact');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
+Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
