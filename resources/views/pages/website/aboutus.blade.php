@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="w-full mb-6">
-        <div class="container mx-auto">
+    <div class="w-full bg-gray-100">
+        <div class="container mx-auto mb-6">
             <div>
                 <picture>
                     <source media="(max-width:780px)" srcset="assets/about-us/main-780.jpg">
@@ -12,8 +12,8 @@
                 </picture>
             </div>
             <div class="mt-8">
-                <section class="mb-12">
-                    <h1 class="text-3xl">Over ons</h1>
+                <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
+                    <h1 class="text-3xl mb-4">Over ons</h1>
                     <p>
                         EasyDrive4All is in de afgelopen 15 jaar uitgegroeid tot een bedrijf van meer dan 100 medewerkers dat rijopleidingen aanbiedt in Nederland. 
                         Duizenden mensen behalen jaarlijks hun rijbewijs bij onze rijschool.
@@ -22,7 +22,7 @@
                         Ook hebben wij de beschikking over een professionele klantenservice die de instructeurs ondersteunt bij jouw opleidingstraject.
                     </p>
                 </section>
-                <section class="mb-12">
+                <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
                     <h1 class="text-3xl">Waarom ons?</h1>
                     <div>
                         <ul class="list-none">
@@ -110,8 +110,8 @@
                         </ul>
                     </div>
                 </section>
-                <section class="mb-12">
-                    <h1 class="text-3xl">Onze rijschool helpt jou op weg!</h1>
+                <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
+                    <h1 class="text-3xl mb-4">Onze rijschool helpt jou op weg!</h1>
                     <div class="flex flex-col lg:flex-row">
                         <div class="lg:basis-4/12">
                             <picture>
@@ -133,5 +133,6 @@
                 </section>
             </div>
         </div>
+        <div class="container h-24 mb-4"></div>
     </div>
 </x-app-layout>
