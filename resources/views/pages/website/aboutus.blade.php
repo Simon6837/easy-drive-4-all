@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="w-full bg-gray-100">
-        <div class="container mx-auto mb-6">
+        <div class="container max-w-5xl mx-auto mb-6">
             <div>
                 <picture>
                     <source media="(max-width:780px)" srcset="assets/about-us/main-780.jpg">
@@ -28,7 +28,7 @@
                         <ul class="list-none">
                             <li>
                                 <div class="flex flex-col lg:flex-row">
-                                    <div class="lg:basis-5/12 mt-4">
+                                    <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                     <div class="lg:basis-1/12"></div>
-                                    <div class="lg:basis-5/12 mt-4">
+                                    <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
@@ -70,7 +70,7 @@
                             </li>
                             <li>
                             <div class="flex flex-col lg:flex-row">
-                                    <div class="lg:basis-5/12 mt-4">
+                                    <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="lg:basis-1/12"></div>
-                                    <div class="lg:basis-5/12 mt-4">
+                                    <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
@@ -123,9 +123,11 @@
                         <div class="lg:basis-8/12">
                             Van smalle straatjes rondom de Peperbus tot de A28, de hoofdstad van Overijssel is een ideale stad om rijles te volgen. 
                             De afstanden zijn klein waardoor je snel kunt leren wat op dat moment nodig is. 
-                            Bovendien kun je via onze rijschool ook afrijden in Zwolle. 
+                            Bovendien kun je via onze rijschool ook afrijden in Zwolle.
+                            <br><br>
                             Door de ervaring die wij met rijden in Zwolle hebben, kiezen wij voor de les een route waarin je zoveel mogelijk kunt leren en je met het minimaal aantal lessen klaar bent voor je rijexamen. 
                             Neem voor meer informatie over onze rijschool neem vrijblijvend <a class="text-blue-600 visited:text-purple-600 hover:underline" href="{{route('contact')}}">contact</a> met ons op. 
+                            <br><br>
                             Dat kan door te bellen naar <a class="text-blue-600 visited:text-purple-600 hover:underline" href="tel:+31 123456789">+31 123456789</a> of een e-mail te sturen naar <a class="text-blue-600 visited:text-purple-600 hover:underline" href="mailto:info@drive4all.org">info@drive4all.org</a>.
                             Bij onze rijschool in Zwolle haal je eenvoudig je rijbewijs voor de beste prijs!
                         </div>
