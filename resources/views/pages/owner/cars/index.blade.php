@@ -13,6 +13,9 @@
                                 ID
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
+                                Merk
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
                                 Model
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
@@ -37,6 +40,11 @@
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     {{$car->id}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">
+                                        {{$car->brand}}
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
