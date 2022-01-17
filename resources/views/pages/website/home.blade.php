@@ -64,15 +64,16 @@
                         <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
                     </div>
                 @endif
-                <form method="POST" action="{{ route('signup') }}" id="signup" class="w-full bg-white rounded p-6 space-y-4">
+                <form method="POST" action="{{ route('signup') }}" id="signup"
+                      class="w-full bg-white rounded p-6 space-y-4">
                     @csrf
                     <div class="mb-4">
                         <h2 class="text-xl font-bold">Meld je aan</h2>
                     </div>
                     <div>
-                        <input name="firstName"
-                            class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-                            type="text" placeholder="Voornaam">
+                        <input name="firstName" value="{{ old('firstName') }}"
+                               class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                               type="text" placeholder="Voornaam">
                     </div>
                     @if ($errors->has('firstName'))
                         <div class="text-red-700 text-sm">
@@ -80,9 +81,9 @@
                         </div>
                     @endif
                     <div>
-                        <input name="lastName"
-                            class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-                            type="text" placeholder="Achternaam">
+                        <input name="lastName" value="{{ old('lastName') }}"
+                               class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                               type="text" placeholder="Achternaam">
                     </div>
                     @if ($errors->has('lastName'))
                         <div class="text-red-700 text-sm">
@@ -90,9 +91,9 @@
                         </div>
                     @endif
                     <div>
-                        <input name="birthDate"
-                            class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-                            type="date" placeholder="Geboorte datum">
+                        <input name="birthDate" value="{{ old('birthDate') }}"
+                               class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                               type="date" placeholder="Geboorte datum">
                     </div>
                     @if ($errors->has('birthDate'))
                         <div class="text-red-700 text-sm">
@@ -100,9 +101,9 @@
                         </div>
                     @endif
                     <div>
-                        <input name="phone"
-                            class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-                            type="number" placeholder="Telefoon nummer">
+                        <input name="phone" value="{{ old('phone') }}"
+                               class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                               type="number" placeholder="Telefoon nummer">
                     </div>
                     @if ($errors->has('phone'))
                         <div class="text-red-700 text-sm">
@@ -110,9 +111,9 @@
                         </div>
                     @endif
                     <div>
-                        <input name="email"
-                            class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-                            type="email" placeholder="Email">
+                        <input name="email" value="{{ old('email') }}"
+                               class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
+                               type="email" placeholder="Email">
                     </div>
                     @if ($errors->has('email'))
                         <div class="text-red-700 text-sm">
@@ -121,7 +122,7 @@
                     @endif
                     <div>
                         <button type="submit"
-                            class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">
+                                class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">
                             Meld je aan
                         </button>
                     </div>

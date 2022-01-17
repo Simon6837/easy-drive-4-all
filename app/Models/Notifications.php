@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cars extends Model
+class Notifications extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,12 @@ class Cars extends Model
      * @var string[]
      */
     protected $fillable = [
-        'type',
-        'brand',
-        'model',
-        'license_plate',
-        'image',
+        'role',
+        'title',
+        'notification',
+        'created_at',
+        'updated_at',
+        'valid_until',
     ];
 
     /**
