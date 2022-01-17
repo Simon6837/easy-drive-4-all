@@ -25,23 +25,23 @@ class ContactController extends Controller
 
         Contact::create($input);
 
-            // //  Send mail to admin 
+        //  Send mail to admin 
 
-            // Mail::send('contactMail', array( 
+        Mail::send('emails.contactMail', array( 
 
-            //     'name' => $input['name'], 
-            //     'email' => $input['email'],        
-            //     'opject' => $input['opject'],        
-            //     'message' => $input['message'],
+            'name' => $input['name'], 
+            'email' => $input['email'],        
+            'opject' => $input['opject'],        
+            'msg' => $input['message'],
         
-            //     ), function($message) use ($request){ 
+            ), function($message) use ($request){ 
         
-            //         $message->from($request->email);
-            //         $message->to('admin@admin.com', 'Admin')->subject($request->get('subject')); 
+                $message->from($request->email);
+                $message->to('admin@admin.com', 'Admin')->subject($request->get('opject')); 
         
-            //     }); 
+            }); 
 
-        return redirect()->back()->with(['success' => 'Contact Form Submit Successfully']); 
+        return redirect()->back()->with(['success' => 'We hebben uw bericht ontvangen']); 
 
     } 
 }

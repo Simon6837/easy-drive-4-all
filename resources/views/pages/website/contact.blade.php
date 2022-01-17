@@ -2,6 +2,14 @@
 	<div class="bg-gray-100 relative flex items-top justify-center min-h-screen bg-white sm:items-center sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="mt-8 bg-white shadow shadow-gray-600 rounded-lg overflow-hidden">
+                @if(Session::has('success')) 
+                    <div class="m-2 h-11 items-center bg-blue-500 text-white rounded-lg text-sm font-bold px-4 py-3" role="alert">
+                        {{ Session::get('success') }} 
+                        @php 
+                            Session::forget('success'); 
+                        @endphp 
+                    </div> 
+                @endif
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="p-6 mr-2 bg-white sm:rounded-lg">
                         <h1 class="text-4xl sm:text-5xl text-gray-800 font-extrabold tracking-tight">
@@ -45,22 +53,34 @@
 						@csrf
                         <div class="flex flex-col">
                             <label for="name" class="hidden">Full Name</label>
-                            <input type="name" name="name" id="name" placeholder="Full Name" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                            <input type="name" name="name" id="name" placeholder="Naam" value="{{ old('name') }}" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                                @if ($errors->has('name')) 
+                                    <p class="ml-4 text-red-600">{{ $errors->first('name') }}</p>
+                                @endif 
                         </div>
 
                         <div class="flex flex-col mt-2">
                             <label for="email" class="hidden">Email</label>
-                            <input type="email" name="email" id="email" placeholder="Email" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                            <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                                {{-- @if ($errors->has('email')) 
+                                    <p class="ml-4 text-red-600">{{ $errors->first('email') }}</p>
+                                @endif  --}}
                         </div>
 
 						<div class="flex flex-col mt-2">
                             <label for="opject" class="hidden">Onderwerp</label>
-                            <input type="opject" name="opject" id="opject" placeholder="Onderwerp" class="w-100 h-14 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                            <input type="opject" name="opject" id="opject" placeholder="Onderwerp" value="{{ old('opject') }}" class="w-100 h-14 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                                @if ($errors->has('opject')) 
+                                    <p class="ml-4 text-red-600">{{ $errors->first('opject') }}</p>
+                                @endif 
                         </div>
 
 						<div class="flex flex-col mt-2">
 							<label for="message" class="hidden">Message</label>
-							<textarea id="message" name="message" placeholder="Message" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"></textarea>
+							<textarea id="message" name="message" placeholder="Message" class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">{{ old('message') }}</textarea>
+                                @if ($errors->has('message')) 
+                                    <p class="ml-4 text-red-600">{{ $errors->first('message') }}</p>
+                                @endif 
 						  </div>
 
                         <button id="store" type="submit" class="md:w-32 bg-indigo-600 bg-blue-dark hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-300 transition ease-in-out duration-300">
