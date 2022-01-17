@@ -12,7 +12,7 @@
                             <li>
                                 <div class="grid grid-cols-2">
                                     <p>Merk:</p>
-                                    <p class="text-right">test 2</p>
+                                    <p class="text-right">{{$car->brand}}</p>
                                 </div>
                             </li>
                             <li>
