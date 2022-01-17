@@ -3,64 +3,53 @@
         <div class="mt-10 sm:mt-0">
             <div class="mt-5 md:mt-0 md:col-span-2">
 
-                <form enctype="multipart/form-data" action="{{ route('carsstore')}}" type='submit' method="POST">
+                <form enctype="multipart/form-data" action="{{ route('notificationsstore')}}" type='submit' method="POST">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                                    <input placeholder="type" type="text" name="type"
-                                           id="type"
-                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('type'))
+                                    <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
+                                    <select name="role" id="role" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <option>leerling</option>
+                                        <option>instructeur</option>
+                                    </select>
+                                    @if ($errors->has('role'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('type') }}
+                                            {{ $errors->first('role') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="model" class="block text-sm font-medium text-gray-700">Merk</label>
-                                    <input placeholder="Merk" type="text" name="brand" id="brand"
+                                    <label for="title" class="block text-sm font-medium text-gray-700">Titel</label>
+                                    <input placeholder="Titel" type="text" name="title" id="title"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('brand'))
+                                    @if ($errors->has('title'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('brand') }}
+                                            {{ $errors->first('title') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-                                    <input placeholder="Model" type="text" name="model" id="model"
+                                    <label for="notification" class="block text-sm font-medium text-gray-700">Bericht</label>
+                                    <input placeholder="Bericht" type="text" name="notification" id="notification"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('model'))
+                                    @if ($errors->has('notification'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('model') }}
+                                            {{ $errors->first('notification') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="license_plate"
-                                           class="block text-sm font-medium text-gray-700">Kenteken</label>
-                                    <input placeholder="Kenteken" type="text" name="license_plate" id="license_plate"
+                                    <label for="valid_until" class="block text-sm font-medium text-gray-700">Geldig tot</label>
+                                    <input placeholder="Geldig tot" type="datetime-local" name="valid_until" id="valid_until"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('license_plate'))
+                                    @if ($errors->has('valid_until'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('license_plate') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-4 lg:col-span-2">
-                                    <label for="type" class="block text-sm font-medium text-gray-700">Foto</label>
-                                    <input placeholder="Type" type="file" name="image" id="image"
-                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('image'))
-                                        <div class="text-red-700 text-sm">
-                                            {{ $errors->first('image') }}
+                                            {{ $errors->first('valid_until') }}
                                         </div>
                                     @endif
                                 </div>
@@ -78,4 +67,7 @@
             </div>
         </div>
     </div>
+    </div>
+
+
 </x-app-layout>

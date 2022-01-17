@@ -3,65 +3,62 @@
         <div class="mt-10 sm:mt-0">
             <div class="mt-5 md:mt-0 md:col-span-2">
 
-                <form enctype="multipart/form-data" action="{{ route('carsupdate')}}" type='submit' method="POST">
+                <form enctype="multipart/form-data" action="{{ route('notificationsupdate')}}" type='submit'
+                      method="POST">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                <input value="{{$car->id}}" type="text" name="id" id="id" style="display:none"
+                                <input value="{{$notification->id}}" type="text" name="id" id="id" style="display:none"
                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                                    <input value="{{$car->type}}" type="text" name="type" id="type"
-                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('type'))
+                                    <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
+                                    <select name="role" id="role"
+                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <option>leerling</option>
+                                        <option>instructeur</option>
+                                    </select>
+                                    @if ($errors->has('role'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('type') }}
+                                            {{ $errors->first('role') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="model" class="block text-sm font-medium text-gray-700">Merk</label>
-                                    <input value="{{$car->brand}}" type="text" name="brand" id="brand"
+                                    <label for="title" class="block text-sm font-medium text-gray-700">Titel</label>
+                                    <input value="{{$notification->title}}" type="text" name="title" id="title"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('brand'))
+                                    @if ($errors->has('title'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('brand') }}
+                                            {{ $errors->first('title') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-                                    <input value="{{$car->model}}" type="text" name="model" id="model"
+                                    <label for="notification"
+                                           class="block text-sm font-medium text-gray-700">Melding</label>
+                                    <input value="{{$notification->notification}}" type="text" name="notification"
+                                           id="notification"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('model'))
+                                    @if ($errors->has('notification'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('model') }}
+                                            {{ $errors->first('notification') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="license_plate"
-                                           class="block text-sm font-medium text-gray-700">Model</label>
-                                    <input value="{{$car->license_plate}}" type="text" name="license_plate"
-                                           id="license_plate"
+                                    <label for="valid_until"
+                                           class="block text-sm font-medium text-gray-700">Melding</label>
+                                    <input value="{{$notification->valid_until}}" type="datetime-local"
+                                           name="valid_until"
+                                           id="valid-until"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    @if ($errors->has('license_plate'))
+                                    @if ($errors->has('valid_until'))
                                         <div class="text-red-700 text-sm">
-                                            {{ $errors->first('license_plate') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-4 lg:col-span-2">
-                                    <label for="image" class="block text-sm font-medium text-gray-700">Foto</label>
-                                    <input value="{{$car->image}}" type="file" name="image" class="form-control" placeholder="image">
-                                    @if ($errors->has('image'))
-                                        <div class="text-red-700 text-sm">
-                                            {{ $errors->first('image') }}
+                                            {{ $errors->first('valid_until') }}
                                         </div>
                                     @endif
                                 </div>
