@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="w-full bg-gray-100">
         <div class="container max-w-5xl mx-auto mb-6 mt-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 @foreach($cars as $car)
                 <!-- start item -->
                 <div class="mb-8 bg-white shadow rounded-lg">
