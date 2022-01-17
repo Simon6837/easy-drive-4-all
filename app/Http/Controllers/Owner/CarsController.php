@@ -41,6 +41,7 @@ class CarsController extends Controller
     {
         $validation = $this->validate($request, [
             'type' => 'required',
+            'brand' => 'required',
             'model' => 'required',
             'license_plate' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
@@ -86,6 +87,7 @@ class CarsController extends Controller
     {
         $data = $request->validate([
             'type' => 'required',
+            'brand' => 'required',
             'model' => 'required',
             'license_plate' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg'
@@ -93,7 +95,7 @@ class CarsController extends Controller
         $car = Cars::find($request->id);
         if ($image = $request->file('image')) {
 
-            $destinationPath = 'assets/images/vehicles';
+            $destinationPath = 'assets/images/cars';
 
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
 

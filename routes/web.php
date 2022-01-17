@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Owner\CarsController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\Owner\CarsController;
+use App\Http\Controllers\Owner\NotificationsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -24,7 +26,9 @@ Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
 Route::get('/autos', [CarController::class, 'index'])->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
-Route::get('/contact', function () { return view('/pages.website.contact');})->name('contact');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
+Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
 
 //cars crud
 Route::get('/cars', [CarsController::class, 'index'])->name('carsindex');
@@ -33,6 +37,14 @@ Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('carsedit')
 Route::post('/cars/store', [CarsController::class, 'store'])->name('carsstore');
 Route::post('/cars/update', [CarsController::class, 'update'])->name('carsupdate');
 Route::get('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('carsdelete');
+
+//Notifications crud
+Route::get('/notifications', [NotificationsController::class, 'index'])->name('notificationsindex');
+Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
+Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
+Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
+Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
+Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
