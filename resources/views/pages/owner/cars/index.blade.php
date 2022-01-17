@@ -13,9 +13,6 @@
                                 ID
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                Merk
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
                                 Model
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
@@ -40,11 +37,6 @@
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     {{$car->id}}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
-                                        {{$car->brand}}
-                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
@@ -113,7 +105,7 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">Wil je echt deze auto verwijderen, dit kan niet worden
+                        <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
                             teruggezet.</p>
                 </div>
                 <!--footer-->

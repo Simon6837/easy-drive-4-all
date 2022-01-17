@@ -16,9 +16,11 @@ class CreateInstructorsTable extends Migration
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
+            $table->string('address');
+            $table->string('city');
+            $table->string('postal_code');
             $table->string('description')->nullable();
-            $table->string('photo')->nullable();
-
+            $table->string('image')->default('')->nullable();;
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
