@@ -21,6 +21,17 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
+                                    <label for="model" class="block text-sm font-medium text-gray-700">Merk</label>
+                                    <input placeholder="Merk" type="text" name="brand" id="brand"
+                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    @if ($errors->has('brand'))
+                                        <div class="text-red-700 text-sm">
+                                            {{ $errors->first('brand') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
                                     <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
                                     <input placeholder="Model" type="text" name="model" id="model"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
