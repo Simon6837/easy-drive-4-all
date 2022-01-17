@@ -69,7 +69,7 @@
                                 </div>
                             </li>
                             <li>
-                            <div class="flex flex-col lg:flex-row">
+                                <div class="flex flex-col lg:flex-row">
                                     <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
@@ -113,14 +113,14 @@
                 <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
                     <h1 class="text-3xl mb-4">Onze rijschool helpt jou op weg!</h1>
                     <div class="flex flex-col lg:flex-row">
-                        <div class="lg:basis-4/12">
+                        <div class="lg:basis-6/12">
                             <picture>
                                 <source srcset="assets/about-us/lesson-car.jpg">
                                 <source srcset="assets/about-us/lesson-car.png">
-                                <img class="w-full h-full pr-4" src="assets/about-us/lesson-car.webp" alt="les-auto">
+                                <img class="w-full h-full object-cover pr-4" src="assets/about-us/lesson-car.webp" alt="les-auto">
                             </picture>
                         </div>
-                        <div class="lg:basis-8/12">
+                        <div class="lg:basis-6/12">
                             Van smalle straatjes rondom de Peperbus tot de A28, de hoofdstad van Overijssel is een ideale stad om rijles te volgen. 
                             De afstanden zijn klein waardoor je snel kunt leren wat op dat moment nodig is. 
                             Bovendien kun je via onze rijschool ook afrijden in Zwolle.
