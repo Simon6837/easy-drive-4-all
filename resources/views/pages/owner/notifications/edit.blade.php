@@ -3,7 +3,8 @@
         <div class="mt-10 sm:mt-0">
             <div class="mt-5 md:mt-0 md:col-span-2">
 
-                <form enctype="multipart/form-data" action="{{ route('notificationsupdate')}}" type='submit' method="POST">
+                <form enctype="multipart/form-data" action="{{ route('notificationsupdate')}}" type='submit'
+                      method="POST">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
@@ -12,7 +13,8 @@
                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
-                                    <select name="role" id="role" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <select name="role" id="role"
+                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         <option>leerling</option>
                                         <option>instructeur</option>
                                     </select>
@@ -50,7 +52,8 @@
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="valid_until"
                                            class="block text-sm font-medium text-gray-700">Melding</label>
-                                    <input value="{{$notification->valid_until}}" type="text" name="valid_until"
+                                    <input value="{{$notification->valid_until}}" type="datetime-local"
+                                           name="valid_until"
                                            id="valid-until"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     @if ($errors->has('valid_until'))
