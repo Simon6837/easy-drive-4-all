@@ -22,8 +22,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () { return view('/pages.website.home');})->name('home');
 Route::get('/home', function () { return view('/pages.website.home');})->name('homepage');
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
-#Route::get('/autos', function () {  return view('/pages.website.cars');})->name('cars');
-Route::get('/autos', [CarController::class, 'index'])->name('cars');
+Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
 
