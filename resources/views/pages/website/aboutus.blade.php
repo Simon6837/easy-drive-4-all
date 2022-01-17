@@ -69,7 +69,7 @@
                                 </div>
                             </li>
                             <li>
-                            <div class="flex flex-col lg:flex-row">
+                                <div class="flex flex-col lg:flex-row">
                                     <div class="lg:basis-5/12 mt-6">
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
