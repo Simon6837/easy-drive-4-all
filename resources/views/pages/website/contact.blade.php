@@ -71,12 +71,12 @@
                         </div>
 
                         <div class="flex flex-col mt-2">
-                            <label for="opject" class="hidden">Onderwerp</label>
-                            <input type="opject" name="opject" id="opject" placeholder="Onderwerp"
-                                   value="{{ old('opject') }}"
+                            <label for="subject" class="hidden">Onderwerp</label>
+                            <input type="subject" name="subject" id="subject" placeholder="Onderwerp"
+                                   value="{{ old('subject') }}"
                                    class="w-100 h-14 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
-                            @if ($errors->has('opject'))
-                                <p class="ml-4 text-red-600">{{ $errors->first('opject') }}</p>
+                            @if ($errors->has('subject'))
+                                <p class="ml-4 text-red-600">{{ $errors->first('subject') }}</p>
                             @endif
                         </div>
 
