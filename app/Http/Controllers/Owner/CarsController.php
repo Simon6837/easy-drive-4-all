@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Owner;
 
+use App\Http\Requests\carsRequest;
+use App\Http\Requests\studentRequest;
 use App\Models\Cars;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,15 +39,9 @@ class CarsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(carsRequest $request)
     {
-        $validation = $this->validate($request, [
-            'type' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'license_plate' => ['required', 'max:8','regex:/(([a-zA-Z]{3}[0-9]{3})|(\w{2}-\w{2}-\w{2})|([0-9]{2}-[a-zA-Z]{3}-[0-9]{1})|([0-9]{1}-[a-zA-Z]{3}-[0-9]{2})|([a-zA-Z]{1}-[0-9]{3}-[a-zA-Z]{2}))/i'],
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
-        ]);
+        $data = $request->all();
 
         if ($image = $request->file('image')) {
 
@@ -55,10 +51,10 @@ class CarsController extends Controller
 
             $image->move($destinationPath, $profileImage);
 
-            $validation['image'] = "$profileImage";
+            $data['image'] = "$profileImage";
         }
 
-        Cars::create($validation);
+        Cars::create($data);
 
         return redirect()->route('carsindex')
             ->with('Goood', 'Het voertuig is toegevoegd.');
@@ -83,15 +79,10 @@ class CarsController extends Controller
      * @param \App\Cars $cars
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(carsRequest $request)
     {
-        $data = $request->validate([
-            'type' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'license_plate' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg'
-        ]);
+        $data = $request->all();
+
         $car = Cars::find($request->id);
         if ($image = $request->file('image')) {
 
