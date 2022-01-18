@@ -29,6 +29,8 @@ Route::get('/diensten', function () { return view('/pages.website.services');})-
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
 
+Route::get('/profile', function () {return view('/pages.instructors.profile'); })->name('profile');
+
 //cars crud
 Route::get('/cars', [CarsController::class, 'index'])->name('carsindex');
 Route::get('/cars/create', [CarsController::class, 'create'])->name('carscreate');
