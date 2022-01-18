@@ -43,7 +43,7 @@ class CarsController extends Controller
             'type' => 'required',
             'brand' => 'required',
             'model' => 'required',
-            'license_plate' => 'required',
+            'license_plate' => ['required', 'max:8','regex:/(([a-zA-Z]{3}[0-9]{3})|(\w{2}-\w{2}-\w{2})|([0-9]{2}-[a-zA-Z]{3}-[0-9]{1})|([0-9]{1}-[a-zA-Z]{3}-[0-9]{2})|([a-zA-Z]{1}-[0-9]{3}-[a-zA-Z]{2}))/i'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
