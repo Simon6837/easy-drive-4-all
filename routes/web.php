@@ -26,7 +26,7 @@ Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
 
 //cars crud
@@ -44,6 +44,10 @@ Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])
 Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
 Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
 Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+
+Route::get('/notifications/owner', [NotificationsController::class, 'currentNofitifcations'])->name('ownernotifications');
+Route::get('/notifications/instructor', [NotificationsController::class, 'instructorNofitifcations'])->name('instructornotifications');
+Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notifications;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
@@ -99,5 +100,37 @@ class NotificationsController extends Controller
 
         return redirect()->route('notificationsindex')
             ->with('Success', 'De melding is verwijderd');
+    }
+
+    public function currentNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->get();
+
+        return view('pages.owner.notifications.active', compact('notifications'));
+
+    }
+    public function studentNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'leerling')->get();
+
+        return view('pages.student.notifications', compact('notifications'));
+
+    }
+
+    public function instructorNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->get();
+
+        return view('pages.instructors.notifications', compact('notifications'));
+
     }
 }
