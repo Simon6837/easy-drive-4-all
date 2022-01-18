@@ -112,4 +112,25 @@ class NotificationsController extends Controller
         return view('pages.owner.notifications.active', compact('notifications'));
 
     }
+    public function studentNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'leerling')->get();
+
+        return view('pages.student.notifications', compact('notifications'));
+
+    }
+
+    public function instructorNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->get();
+
+        return view('pages.instructors.notifications', compact('notifications'));
+
+    }
 }

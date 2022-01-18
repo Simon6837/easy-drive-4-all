@@ -39,12 +39,15 @@ Route::get('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('carsd
 
 //Notifications crud
 Route::get('/notifications', [NotificationsController::class, 'index'])->name('notificationsindex');
-Route::get('/notifications/active', [NotificationsController::class, 'currentNofitifcations'])->name('notificationsactive');
 Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
 Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
 Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
 Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
 Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+
+Route::get('/notifications/owner', [NotificationsController::class, 'currentNofitifcations'])->name('ownernotifications');
+Route::get('/notifications/instructor', [NotificationsController::class, 'instructorNofitifcations'])->name('instructornotifications');
+Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
