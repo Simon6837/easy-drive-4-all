@@ -26,7 +26,7 @@ Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
 Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
 Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
 
 //cars crud
@@ -39,6 +39,7 @@ Route::get('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('carsd
 
 //Notifications crud
 Route::get('/notifications', [NotificationsController::class, 'index'])->name('notificationsindex');
+Route::get('/notifications/active', [NotificationsController::class, 'currentNofitifcations'])->name('notificationsactive');
 Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
 Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
 Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');

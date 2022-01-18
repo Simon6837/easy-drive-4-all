@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notifications;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
@@ -99,5 +100,21 @@ class NotificationsController extends Controller
 
         return redirect()->route('notificationsindex')
             ->with('Success', 'De melding is verwijderd');
+    }
+
+    public function currentNofitifcations()
+    {
+//        $now = date("Y-m-d H:i:s");
+//        dd($now);
+//        $data = strtotime($now);
+//        $nextWeek = date_add($data, date_interval_create_from_date_string('7 days'));
+
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->get();
+
+        return view('pages.owner.notifications.active', compact('notifications'));
+
     }
 }
