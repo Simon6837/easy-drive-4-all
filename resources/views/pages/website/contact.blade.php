@@ -68,6 +68,9 @@
                             <label for="email" class="hidden">Email</label>
                             <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}"
                                    class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
+                                @if ($errors->has('email'))
+                                   <p class="ml-4 text-red-600">{{ $errors->first('email') }}</p>
+                               @endif
                         </div>
 
                         <div class="flex flex-col mt-2">

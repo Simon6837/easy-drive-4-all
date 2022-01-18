@@ -62,7 +62,10 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
     Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
 });
-
+//get notification per role
+Route::get('/notifications/owner', [NotificationsController::class, 'currentNofitifcations'])->name('ownernotifications');
+Route::get('/notifications/instructor', [NotificationsController::class, 'instructorNofitifcations'])->name('instructornotifications');
+Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
