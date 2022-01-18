@@ -10,9 +10,16 @@ class Instructor extends Model
     use HasFactory;
     protected $table = "instructors";
     public $timestamps = false;
-    protected $fillable = ['user_id', 'description', 'photo'];
+    protected $fillable = [
+        'user_id',
+        'address',
+        'city',
+        'postal_code',
+        'description',
+        'image'
+    ];
 
-    public function instructor(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
+//    public function instructor(){
+//        return $this->belongsTo(User::class, 'user_id');
+//    }
 }

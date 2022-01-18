@@ -3,6 +3,11 @@
         <div class="flex flex-col">
             <div class="w-full">
                 <div class="border-b border-gray-200 shadow">
+                    @if(Session::has('success'))
+                        <div class="text-green-400 text-center flex flex-col" role="alert">
+                            <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
+                        </div>
+                    @endif
                     <table class="divide-y divide-gray-300 ">
                         <thead class="bg-gray-50">
                         <tr>
@@ -105,8 +110,8 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
-                            teruggezet.</p>
+                    <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
+                        teruggezet.</p>
                 </div>
                 <!--footer-->
                 <div class="p-3  mt-2 text-center space-x-4 md:block">

@@ -57,7 +57,7 @@ class CarsController extends Controller
         Cars::create($data);
 
         return redirect()->route('carsindex')
-            ->with('Goood', 'Het voertuig is toegevoegd.');
+            ->with('success', 'Het voertuig is toegevoegd.');
     }
 
     /**
@@ -99,7 +99,7 @@ class CarsController extends Controller
         $car->update($data);
 
         return redirect()->route('carsindex')
-            ->with('Success', 'Auto is geupdate');
+            ->with('success', 'Het voertuig is aangepast');
     }
 
     /**

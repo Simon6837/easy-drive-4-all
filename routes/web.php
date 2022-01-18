@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\Owner\CarsController;
+use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
 use App\Http\Controllers\Owner\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,13 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::post('/student/store', [StudentController::class, 'store'])->name('studentstore');
     Route::post('/student/update', [StudentController::class, 'update'])->name('studentupdate');
     Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('studentdelete');
+
+    Route::get('/instructors', [InstructorController::class, 'index'])->name('instructorsindex');
+    Route::get('/instructor/create', [InstructorController::class, 'create'])->name('instructorcreate');
+    Route::get('/instructor/edit/{id}', [InstructorController::class, 'edit'])->name('instructoredit');
+    Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructorstore');
+    Route::post('/instructor/update', [InstructorController::class, 'update'])->name('instructorupdate');
+    Route::get('/instructor/delete/{id}', [InstructorController::class, 'destroy'])->name('instructordelete');
 
 //Notifications crud
     Route::get('/notifications', [NotificationsController::class, 'index'])->name('notificationsindex');

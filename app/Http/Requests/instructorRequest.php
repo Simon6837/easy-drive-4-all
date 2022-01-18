@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class studentRequest extends FormRequest
+class instructorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -53,6 +53,7 @@ class studentRequest extends FormRequest
             'postal_code' => ['required', 'string', 'regex:/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i'],
             'email' => ['required', 'email'],
             'password' => ['sometimes', 'string'],
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg'
         ];
     }
 }
