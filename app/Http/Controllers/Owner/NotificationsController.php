@@ -104,11 +104,6 @@ class NotificationsController extends Controller
 
     public function currentNofitifcations()
     {
-//        $now = date("Y-m-d H:i:s");
-//        dd($now);
-//        $data = strtotime($now);
-//        $nextWeek = date_add($data, date_interval_create_from_date_string('7 days'));
-
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
 
