@@ -7,19 +7,25 @@
                         <thead class="bg-gray-50">
                         <tr>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                Image
+                                Gebruiker ID
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                ID
+                                Naam
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                Model
+                                Email
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                Type
+                                Adres
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
-                                Kenteken
+                                Plaats
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                Postcode
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                lessen tegoed
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
                                 Edit
@@ -30,29 +36,42 @@
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach($cars as $car)
+                        @foreach($students as $student)
                             <tr class="whitespace-nowrap">
                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                    <img src="/assets/images/cars/{{ $car->image }}" width="100px">
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{$car->id}}
+                                    {{$student->id}}
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
-                                        {{$car->model}}
+                                        {{$student->first_name}} {{$student->prefix}} {{$student->last_name}}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-500">
-                                        {{$car->type}}
+                                        {{$student->email}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">
+                                        {{$student->student->address}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">
+                                        {{$student->student->city}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">
+                                        {{$student->student->postal_code}}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{$car->license_plate}}
+                                    {{$student->student->lessons_to_go}}
                                 </td>
+
                                 <td class="px-6 py-4">
-                                    <a href="cars/edit/{{$car->id}}">
+                                    <a href="student/edit/{{$student->id}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-6 h-6 text-blue-400"
                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -61,7 +80,7 @@
                                     </a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a onclick="openDialog({{$car->id}})">
+                                    <a onclick="openDialog({{$student->id}})">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-6 h-6 text-red-400"
                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,10 +93,10 @@
                         </tbody>
                     </table>
                     <div class="px-4 py-2 font-semibold bg-white">
-                        <a href="{{ route('carscreate') }}">
+                        <a href="{{ route('studentcreate') }}">
                             <button
                                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                Auto toevoegen
+                                Leerling toevoegen
                             </button>
                         </a>
                     </div>
@@ -105,8 +124,8 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
-                            teruggezet.</p>
+                    <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
+                        teruggezet.</p>
                 </div>
                 <!--footer-->
                 <div class="p-3  mt-2 text-center space-x-4 md:block">
@@ -142,7 +161,7 @@
                 let modal = document.getElementById('modal');
                 modal.style.display = "none";
 
-                window.location.replace(`/cars/delete/${gID}`);
+                window.location.replace(`/student/delete/${gID}`);
 
                 gID = "";
             }
