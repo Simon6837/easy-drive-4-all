@@ -51,7 +51,7 @@ class NotificationsController extends Controller
         Notifications::create($validation);
 
         return redirect()->route('notificationsindex')
-            ->with('Goood', 'Het voertuig is toegevoegd.');
+            ->with('success', 'De melding is toegevoegd.');
     }
 
     /**
@@ -84,7 +84,7 @@ class NotificationsController extends Controller
         $notification->update($data);
 
         return redirect()->route('notificationsindex')
-            ->with('Success', 'De melding is geupdate');
+            ->with('success', 'De melding is geupdate');
     }
 
     /**
