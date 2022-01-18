@@ -12,21 +12,21 @@
                         <h2 class="text-lg font-semibold">{{$car->model}}</h2>
                         <ul class="list-none">
                             <li>
-                                <div class="grid grid-cols-2">
+                                <div class="grid md:grid-cols-2">
                                     <p>Merk:</p>
-                                    <p class="text-right">{{$car->brand}}</p>
+                                    <p class="mb-4 md:mb-0 md:text-right break-word">{{$car->brand}}</p>
                                 </div>
                             </li>
                             <li>
-                                <div class="grid grid-cols-2">
+                                <div class="grid md:grid-cols-2">
                                     <p>Type:</p>
-                                    <p class="text-right">{{$car->type}}</p>
+                                    <p class="mb-4 md:mb-0 md:text-right break-word">{{$car->type}}</p>
                                 </div>
                             </li>
                             <li>
-                                <div class="grid grid-cols-2">
+                                <div class="grid md:grid-cols-2">
                                     <p>Kenteken:</p>
-                                    <p class="text-right">{{$car->license_plate}}</p>
+                                    <p class="mb-4 md:mb-0 md:text-right break-word">{{$car->license_plate}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -36,5 +36,6 @@
                 @endforeach
             </div>
         </div>
+        <div class="container h-24 mb-4"></div>
     </div>
 </x-app-layout>

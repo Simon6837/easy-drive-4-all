@@ -33,7 +33,7 @@
                         tempus vel vel urna. Maecenas euismod scelerisque nibh malesuada pretium. Etiam facilisis
                         ullamcorper rhoncus. Aliquam et tincidunt mauris, at egestas augue. Vestibulum gravida consequat
                         consequat. Vivamus sed luctus sem, quis pretium velit.</p> <br>
-                    <a class="block w-4/12 px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
+                    <a class="block md:w-4/12 px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 hover:bg-indigo-500 rounded md:mt-0"
                        href="/contact">Vragen? Stuur ons een berichtje!</a>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                     @endif
                     <div>
                         <button type="submit"
-                                class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">
+                                class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
                             Meld je aan
                         </button>
                     </div>
@@ -130,5 +130,7 @@
             </div>
         </div>
     </section>
+
+    <div class="container h-24 mb-4"></div>
 </x-app-layout>
 
