@@ -25,7 +25,7 @@ class studentRequest extends FormRequest
     {
         return [
             'first_name' => ['required', 'string'],
-            'prefix' => ['sometimes', 'string'],
+            'prefix' => ['sometimes'],
             'last_name' => ['required', 'string'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
