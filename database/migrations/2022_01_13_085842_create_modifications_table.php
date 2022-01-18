@@ -16,11 +16,9 @@ class CreateModificationsTable extends Migration
         Schema::create('modifications', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('lesson_id')->unsigned();
-            $table->string('new_adress')->nullable();
-            $table->string('new_postcode', 7)->nullable();
-            $table->string('reason');
-            $table->datetime('start_date')->nullable();
-            $table->datetime('end_date')->nullable();
+            $table->string('pickup_address');
+            $table->string('pickup_postal_code', 6);
+            $table->string('pickup_city');
             $table->enum('specialty', [0, 1])->default(0);
 
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
