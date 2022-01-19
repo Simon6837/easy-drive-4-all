@@ -7,6 +7,7 @@ use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
 use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -84,6 +85,7 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
 Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-
-
+//Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['role:student|instructor', 'auth'])->name('profile');
+//Auth routes
 require __DIR__ . '/auth.php';
