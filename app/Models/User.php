@@ -28,11 +28,15 @@ class User extends Authenticatable
         'active',
     ];
     protected $with = [
-        'student'
+        'student', 'instructor'
     ];
     public function student()
     {
         return $this->hasOne(Student::class);
+    }
+    public function instructor()
+    {
+        return $this->hasOne(Instructor::class);
     }
     /**
      * The attributes that should be hidden for serialization.

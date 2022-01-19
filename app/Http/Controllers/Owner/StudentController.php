@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\studentRequest;
 use App\Models\Student;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -33,7 +34,7 @@ class StudentController extends Controller
         $data['user_id'] = $user->id;
         Student::create($data);
         $user->attachRole('student');
-        return redirect()->route('studentindex')->with('Success', 'Auto is geupdate');
+        return redirect()->route('studentindex')->with('success', 'De leerling is aangemaakt');
     }
 
     public function edit($id)
@@ -57,16 +58,17 @@ class StudentController extends Controller
         $user->student->lessons_to_go = $data['lessons_to_go'];
         $user->save();
         $user->student->save();
-        return redirect()->route('studentindex')->with('Success', 'Auto is geupdate');
+        return redirect()->route('studentindex')->with('success', 'De leerling is aangepast');
     }
 
     public function destroy($id)
     {
+        $currentTime = Carbon::now();
         $user = User::find($id);
         $user->first_name = 'deleted';
         $user->prefix = '';
         $user->last_name = '';
-        $user->email = 'deleted';
+        $user->email = $currentTime->toDateTimeString();
         $user->active = 0;
         $user->student->address = 'deleted';
         $user->student->city = 'deleted';
