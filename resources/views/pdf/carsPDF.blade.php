@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <title>instructors.pdf</title>
+    <title>cars.pdf</title>
 </head>
 <body>
 <h1>{{ $title }}</h1>
