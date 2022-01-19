@@ -16,4 +16,5 @@ yarn-error.log
 
 /public/assets/images/cars
 /public/assets/images/instructors
-/public/css/
+/public/css
+/public/js

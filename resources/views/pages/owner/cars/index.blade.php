@@ -3,23 +3,24 @@
         <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
-                    <tr>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Foto</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Merk</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Model</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Type</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Kenteken</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
-                    </tr>
+                <tr>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Foto</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Merk</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Model</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Type</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Kenteken</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
+                </tr>
                 </thead>
                 <tbody>
                 @foreach($cars as $car)
                     <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Select</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -29,7 +30,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Foto</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -41,7 +43,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>ID</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -51,7 +54,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Merk</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -61,7 +65,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Model</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -71,7 +76,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Type</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -81,7 +87,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Kenteken</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -91,7 +98,8 @@
                         </td>
                         <td class="w-full lg:w-auto text-center p-0 border-t">
                             <div class="flex flex-row h-full">
-                                <div class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
                                     <span>Actie</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
@@ -100,10 +108,12 @@
                                             <div class="basis-2/4">
                                                 <div class="flex justify-center">
                                                     <a class="cursor-pointer" href="cars/edit/{{$car->id}}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 lg:w-6 lg:h-6 text-blue-400"
-                                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                             class="w-12 h-12 lg:w-6 lg:h-6 text-blue-400"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -111,10 +121,12 @@
                                             <div class="basis-2/4">
                                                 <div class="flex justify-center">
                                                     <a class="cursor-pointer" onclick="openDialog({{$car->id}})">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 lg:w-6 lg:h-6 text-red-400"
-                                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                             class="w-12 h-12 lg:w-6 lg:h-6 text-red-400"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -140,8 +152,8 @@
                     </div>
                     <div class="basis-2/4">
                         <button onclick="openDialogForMultipleItems()"
-                            id="multiple-deletion-button"
-                            class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
+                                id="multiple-deletion-button"
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
                             Auto(s) verwijderen
                         </button>
                     </div>
@@ -169,9 +181,10 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">
-                            Weet je zeker dat je <span id="deletionAmount"></span> item(s) wilt verwijderen? Dit kan niet ongedaan worden gemaakt.
-                        </p>
+                    <p class="text-sm text-gray-500 px-8">
+                        Weet je zeker dat je <span id="deletionAmount"></span> item(s) wilt verwijderen? Dit kan niet
+                        ongedaan worden gemaakt.
+                    </p>
                 </div>
                 <!--footer-->
                 <div class="p-3 mt-2 text-center space-x-4">
@@ -196,7 +209,7 @@
             const itemIDs = [];
             const checkboxes = document.querySelectorAll('.delete-multiple-items');
 
-            window.onload = function() {
+            window.onload = function () {
                 //Whenever the window loads go through all the checkboxes that are used
                 //when selecting multiple items to delete
                 checkboxes.forEach((checkbox) => {
@@ -216,10 +229,9 @@
                     if (window.getComputedStyle(hiddenButton).display == "none") {
                         hiddenButton.style.display = "block";
                     }
-                }
-                else {
+                } else {
                     let checked = false;
-                    checkboxes.forEach((checkbox) => { 
+                    checkboxes.forEach((checkbox) => {
                         if (checkbox.checked) {
                             checked = true;
                         }
@@ -230,23 +242,23 @@
                             hiddenButton.style.display = "none";
                         }
                     }
-                }    
+                }
             }
 
             function openDialog(id) {
                 itemIDs.push(id);
 
-                document.getElementById("deletionAmount").innerHTML = "1"; 
+                document.getElementById("deletionAmount").innerHTML = "1";
                 document.getElementById('modal').style.display = "";
             }
 
             function openDialogForMultipleItems() {
-                checkboxes.forEach((checkbox) => { 
+                checkboxes.forEach((checkbox) => {
                     if (checkbox.checked) {
                         itemIDs.push(checkbox.value);
                     }
                 });
-                
+
                 document.getElementById("deletionAmount").innerHTML = itemIDs.length;
                 document.getElementById('modal').style.display = "";
             }
