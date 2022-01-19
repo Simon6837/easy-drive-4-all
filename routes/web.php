@@ -77,9 +77,9 @@ Route::get('/notifications/instructor', [NotificationsController::class, 'instru
 Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
 
 //pdf export - Alleen voor owner
-Route::get('generate-cars', [PDFController::class, 'generateCarsPDF']);
-Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF']);
-Route::get('generate-students', [PDFController::class, 'generateStudentsPDF']);
+Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
+Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
+Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
