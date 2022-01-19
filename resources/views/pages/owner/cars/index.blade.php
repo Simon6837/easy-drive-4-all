@@ -1,6 +1,25 @@
 <x-app-layout>
     <div class="flex justify-center mx-auto pt-12">
         <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
+            <div class="px-4 py-2 font-semibold bg-white">
+                <div class="flex flex-row w-full lg:w-8/12 xl:w-6/12 2xl:w-4/12">
+                    <div class="basis-2/4 mr-4">
+                        <a href="{{ route('carscreate') }}">
+                            <button
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
+                                Auto toevoegen
+                            </button>
+                        </a>
+                    </div>
+                    <div class="basis-2/4">
+                        <button onclick="openDialogForMultipleItems()"
+                                id="multiple-deletion-button"
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
+                            Auto(s) verwijderen
+                        </button>
+                    </div>
+                </div>
+            </div>
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
                 <tr>
@@ -140,25 +159,6 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="px-4 py-2 font-semibold bg-white">
-                <div class="flex flex-row w-full lg:w-8/12 xl:w-6/12 2xl:w-4/12">
-                    <div class="basis-2/4 mr-4">
-                        <a href="{{ route('carscreate') }}">
-                            <button
-                                class="w-full py-6 px-8 lg:py-2 lg:px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
-                                Auto toevoegen
-                            </button>
-                        </a>
-                    </div>
-                    <div class="basis-2/4">
-                        <button onclick="openDialogForMultipleItems()"
-                                id="multiple-deletion-button"
-                                class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
-                            Auto(s) verwijderen
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div id="modal" style="display:none;"
