@@ -50,7 +50,7 @@ class NotificationsController extends Controller
 
         Notifications::create($validation);
 
-        return redirect()->route('notificationsindex')
+        return redirect()->route('notifications')
             ->with('success', 'De melding is toegevoegd.');
     }
 
@@ -83,7 +83,7 @@ class NotificationsController extends Controller
 
         $notification->update($data);
 
-        return redirect()->route('notificationsindex')
+        return redirect()->route('notifications')
             ->with('success', 'De melding is geupdate');
     }
 
@@ -98,7 +98,7 @@ class NotificationsController extends Controller
         $notification = Notifications::find($id);
         $notification->delete();
 
-        return redirect()->route('notificationsindex')
+        return redirect()->route('notifications')
             ->with('Success', 'De melding is verwijderd');
     }
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Owner\CarsController;
 use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
+use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
@@ -73,13 +74,16 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
     Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
     Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+    //pdf export
+    Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
+    Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
+    Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
 });
+
 //Get notification per role
 Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
-//Route::get('/notifications/owner', [NotificationsController::class, 'currentNofitifcations'])->name('ownernotifications');
-//Route::get('/notifications/instructor', [NotificationsController::class, 'instructorNofitifcations'])->name('instructornotifications');
-//Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__ . '/auth.php';
