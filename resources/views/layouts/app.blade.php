@@ -7,6 +7,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {!! ReCaptcha::htmlScriptTagJsApi() !!}
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -20,7 +22,7 @@
 </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+        @include('layouts.navigation.navigation')
             <!-- Page Content -->
                 <main>
                     {{ $slot }}

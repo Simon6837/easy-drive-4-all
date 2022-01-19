@@ -17,15 +17,16 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->bigInteger('instructor_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
-            $table->string('adress');
-            $table->string('postcode', 7);
-            $table->string('goals');
-            $table->string('comments')->nullable();
-            $table->datetime('date');
-
-            $table->enum('student_specialty', [0, 1, 2, 3])->default(0);
-            $table->enum('instructor_specialty', [0, 1, 2, 3])->default(0);
-
+            $table->string('pickup_address');
+            $table->string('pickup_postal_code', 6);
+            $table->string('pickup_city');
+            $table->string('goal');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
+            $table->string('result')->nullable();
+            $table->string('comment')->nullable();
+//            $table->enum('student_specialty', [0, 1, 2, 3])->default(0);
+//            $table->enum('instructor_specialty', [0, 1, 2, 3])->default(0);
             $table->foreign('instructor_id')->references('id')->on('instructors')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });

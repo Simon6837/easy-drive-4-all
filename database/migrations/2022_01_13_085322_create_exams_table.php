@@ -16,9 +16,14 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('student_id')->unsigned();
-            $table->string('description')->nullable();
-            $table->dateTime('date');
-            $table->tinyInteger('result')->default(0);
+            $table->string('pickup_address');
+            $table->string('pickup_postal_code', 6);
+            $table->string('pickup_city');
+            $table->string('goal');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
+            $table->string('result')->nullable();
+            $table->string('comment')->nullable();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });

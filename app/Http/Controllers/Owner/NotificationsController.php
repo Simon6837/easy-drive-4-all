@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notifications;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
@@ -49,8 +50,8 @@ class NotificationsController extends Controller
 
         Notifications::create($validation);
 
-        return redirect()->route('notificationsindex')
-            ->with('Goood', 'Het voertuig is toegevoegd.');
+        return redirect()->route('notifications')
+            ->with('success', 'De melding is toegevoegd.');
     }
 
     /**
@@ -82,8 +83,8 @@ class NotificationsController extends Controller
 
         $notification->update($data);
 
-        return redirect()->route('notificationsindex')
-            ->with('Success', 'De melding is geupdate');
+        return redirect()->route('notifications')
+            ->with('success', 'De melding is geupdate');
     }
 
     /**
@@ -97,7 +98,53 @@ class NotificationsController extends Controller
         $notification = Notifications::find($id);
         $notification->delete();
 
-        return redirect()->route('notificationsindex')
+        return redirect()->route('notifications')
             ->with('Success', 'De melding is verwijderd');
+    }
+
+    public function getFromRole(Request $request)
+    {
+        if ($request->user()->hasRole('owner')) {
+            return $this->index();
+        }
+        if ($request->user()->hasRole('instructor')) {
+            return $this->instructorNofitifcations();
+        }
+        if ($request->user()->hasRole('student')) {
+            return $this->studentNofitifcations();
+        }
+    }
+
+    private function currentNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->get();
+
+        return view('pages.owner.notifications.active', compact('notifications'));
+
+    }
+
+    private function studentNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'leerling')->get();
+
+        return view('pages.student.notifications', compact('notifications'));
+
+    }
+
+    private function instructorNofitifcations()
+    {
+        $now = Carbon::now();
+        $nextWeek = Carbon::now()->addWeek();
+
+        $notifications = Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->get();
+
+        return view('pages.instructors.notifications', compact('notifications'));
+
     }
 }
