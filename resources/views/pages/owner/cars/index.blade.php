@@ -23,7 +23,7 @@
                                     <span>Select</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
-                                    <input type="checkbox" class="w-6 h-6">
+                                    <input type="checkbox" class="w-6 h-6 delete-multiple-items" value="{{$car->id}}">
                                 </div>
                             </div>
                         </td>
@@ -129,12 +129,23 @@
                 </tbody>
             </table>
             <div class="px-4 py-2 font-semibold bg-white">
-                <a href="{{ route('carscreate') }}">
-                    <button
-                        class=" py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
-                        Auto toevoegen
-                    </button>
-                </a>
+                <div class="flex flex-row w-full lg:w-8/12 xl:w-6/12 2xl:w-4/12">
+                    <div class="basis-2/4 mr-4">
+                        <a href="{{ route('carscreate') }}">
+                            <button
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
+                                Auto toevoegen
+                            </button>
+                        </a>
+                    </div>
+                    <div class="basis-2/4">
+                        <button onclick="openDialogForMultipleItems()"
+                            id="multiple-deletion-button"
+                            class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
+                            Auto(s) verwijderen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -158,46 +169,101 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                        <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
-                            teruggezet.</p>
+                        <p class="text-sm text-gray-500 px-8">
+                            Weet je zeker dat je <span id="deletionAmount"></span> item(s) wilt verwijderen? Dit kan niet ongedaan worden gemaakt.
+                        </p>
                 </div>
                 <!--footer-->
-                <div class="p-3  mt-2 text-center space-x-4 md:block">
-                    <button onclick="closeDialog()"
-                            class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
-                        Annuleren
-                    </button>
-                    <button type="submit" onclick="deleteUser()"
-                            class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
-                        Verwijderen
-                    </button>
+                <div class="p-3 mt-2 text-center space-x-4">
+                    <div class="mx-auto w-full sm:w-8/12 flex flex-row">
+                        <div class="w-full mr-2 md:mr-4">
+                            <button type="submit" onclick="deleteItem()"
+                                    class="mb-2 w-9/12 sm:w-full mx-auto md:mb-0 bg-red-500 border border-red-500 px-3 py-2 md:px-5 md:py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
+                                Verwijderen
+                            </button>
+                        </div>
+                        <div class="w-full">
+                            <button onclick="closeDialog()"
+                                    class="mb-2 w-9/12 sm:w-full mx-auto md:mb-0 bg-white px-3 py-2 md:px-5 md:py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+                                Annuleren
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <script>
-            let gID = "";
+            const itemIDs = [];
+            const checkboxes = document.querySelectorAll('.delete-multiple-items');
+
+            window.onload = function() {
+                //Whenever the window loads go through all the checkboxes that are used
+                //when selecting multiple items to delete
+                checkboxes.forEach((checkbox) => {
+                    //Uncheck any already checked checkboxes
+                    checkbox.checked = false;
+                    //For each checkbox add them to a change event
+                    checkbox.addEventListener('change', (event) => {
+                        //Assign to function
+                        displayDeleteButtonForMultipleItems(event);
+                    });
+                });
+            }
+
+            function displayDeleteButtonForMultipleItems(event) {
+                const hiddenButton = document.getElementById("multiple-deletion-button");
+                if (event.target.checked) {
+                    if (window.getComputedStyle(hiddenButton).display == "none") {
+                        hiddenButton.style.display = "block";
+                    }
+                }
+                else {
+                    let checked = false;
+                    checkboxes.forEach((checkbox) => { 
+                        if (checkbox.checked) {
+                            checked = true;
+                        }
+                    });
+                    if (!checked) {
+                        //If no checkboxes are checked hide the delete button
+                        if (window.getComputedStyle(hiddenButton).display == "block") {
+                            hiddenButton.style.display = "none";
+                        }
+                    }
+                }    
+            }
 
             function openDialog(id) {
-                gID = id;
+                itemIDs.push(id);
 
-                let modal = document.getElementById('modal');
-                modal.style.display = "";
+                document.getElementById("deletionAmount").innerHTML = "1"; 
+                document.getElementById('modal').style.display = "";
+            }
+
+            function openDialogForMultipleItems() {
+                checkboxes.forEach((checkbox) => { 
+                    if (checkbox.checked) {
+                        itemIDs.push(checkbox.value);
+                    }
+                });
+                
+                document.getElementById("deletionAmount").innerHTML = itemIDs.length;
+                document.getElementById('modal').style.display = "";
             }
 
             function closeDialog() {
-                let modal = document.getElementById('modal');
-                modal.style.display = "none";
-
-                gID = "";
+                hideDialog();
+                itemIDs.length = 0;
             }
 
-            function deleteUser() {
-                let modal = document.getElementById('modal');
-                modal.style.display = "none";
+            function deleteItem() {
+                hideDialog();
+                window.location.replace(`/cars/delete/${itemIDs}`);
+                itemIDs.length = 0;
+            }
 
-                window.location.replace(`/cars/delete/${gID}`);
-
-                gID = "";
+            function hideDialog() {
+                document.getElementById('modal').style.display = "none";
             }
         </script>
 </x-app-layout>
