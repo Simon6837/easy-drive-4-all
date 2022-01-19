@@ -5,7 +5,13 @@
                 <section class="mb-12 bg-white shadow rounded-lg">
                     <div class="flex justify-center">
                         <div class="w-64 h-64 sm:w-80 sm:h-80 xl:w-96 xl:h-96 mt-6 relative overflow-hidden">
-                            <img class="rounded-full absolute h-full w-full object-cover" src="assets/images/instructors/{{$user->instructor->image}}" alt="#1">
+                            @if(!$user->instructor->image)
+                                <img class="rounded-full absolute h-full w-full object-cover"
+                                     src="assets/placeholders/User.png" alt="no image found">
+                            @else
+                                <img class="rounded-full absolute h-full w-full object-cover"
+                                     src="assets/images/instructors/{{$user->instructor->image}}" alt="no image found">
+                            @endif
                         </div>
                     </div>
                     <div class="px-12 py-8">
@@ -18,7 +24,8 @@
                                             <i class="text-indigo-600 fas fa-at fa-2x"></i>
                                         </div>
                                         <div class="basis-3/4 grid content-center text-right">
-                                            <a class="text-blue-600 visited:text-purple-600 hover:underline" href="mailto:{{$user->email}}">{{$user->email}}</a>
+                                            <a class="text-blue-600 visited:text-purple-600 hover:underline"
+                                               href="mailto:{{$user->email}}">{{$user->email}}</a>
                                         </div>
                                     </div>
                                 </li>
@@ -28,7 +35,8 @@
                                             <i class="text-indigo-600 fas fa-map-marker-alt fa-2x"></i>
                                         </div>
                                         <div class="basis-3/4 grid content-center text-right">
-                                            <p>{{$user->instructor->address}} {{$user->instructor->postal_code}},<br> {{$user->instructor->city}}</p>
+                                            <p>{{$user->instructor->address}} {{$user->instructor->postal_code}}
+                                                ,<br> {{$user->instructor->city}}</p>
                                         </div>
                                     </div>
                                 </li>
