@@ -4,6 +4,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\Owner\CarsController;
 use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
+use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
@@ -74,6 +75,11 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
 Route::get('/notifications/owner', [NotificationsController::class, 'currentNofitifcations'])->name('ownernotifications');
 Route::get('/notifications/instructor', [NotificationsController::class, 'instructorNofitifcations'])->name('instructornotifications');
 Route::get('/notifications/student', [NotificationsController::class, 'studentNofitifcations'])->name('stundentnotifications');
+
+//pdf export - Alleen voor owner
+Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
+Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
+Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

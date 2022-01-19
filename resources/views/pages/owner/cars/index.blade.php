@@ -8,6 +8,20 @@
                             <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
                         </div>
                     @endif
+                        <div class="px-4 py-2 font-semibold bg-white">
+                            <a href="{{ route('carscreate') }}">
+                                <button
+                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                    Auto toevoegen
+                                </button>
+                            </a>
+                            <a href="{{ route('generatecars') }}">
+                                <button
+                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                    Naar PDF exporteren
+                                </button>
+                            </a>
+                        </div>
                     <table class="divide-y divide-gray-300 ">
                         <thead class="bg-gray-50">
                         <tr>
@@ -16,6 +30,9 @@
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
                                 ID
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                Merk
                             </th>
                             <th class="px-6 py-2 text-xs text-gray-500">
                                 Model
@@ -42,6 +59,11 @@
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     {{$car->id}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">
+                                        {{$car->brand}}
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
@@ -78,14 +100,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="px-4 py-2 font-semibold bg-white">
-                        <a href="{{ route('carscreate') }}">
-                            <button
-                                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                Auto toevoegen
-                            </button>
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </div>

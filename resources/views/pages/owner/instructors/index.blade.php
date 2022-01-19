@@ -8,6 +8,20 @@
                             <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
                         </div>
                     @endif
+                        <div class="px-4 py-2 font-semibold bg-white">
+                            <a href="{{ route('instructorcreate') }}">
+                                <button
+                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                    Instructeur toevoegen
+                                </button>
+                            </a>
+                            <a href="{{ route('generateinstructors') }}">
+                                <button
+                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                    Naar PDF exporteren
+                                </button>
+                            </a>
+                        </div>
                     <table class="divide-y divide-gray-300 ">
                         <thead class="bg-gray-50">
                         <tr>
@@ -112,14 +126,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="px-4 py-2 font-semibold bg-white">
-                        <a href="{{ route('instructorcreate') }}">
-                            <button
-                                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                Instructeur toevoegen
-                            </button>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
