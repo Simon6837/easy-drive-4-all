@@ -16,7 +16,7 @@
                     </div>
                     <div class="px-12 py-8">
                         <h2 class="w-full text-center text-3xl font-bold">{{$user->first_name}} {{$user->prefix}} {{$user->last_name}}</h2>
-                        <div class="flex justify-center">
+                        <div class="mt-5 flex justify-center">
                             <ul class="list-none w-80">
                                 <li>
                                     <div class="flex flex-row mb-4">
