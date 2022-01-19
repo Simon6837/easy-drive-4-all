@@ -867,6 +867,9 @@ select {
 .flex-auto {
   flex: 1 1 auto;
 }
+.border-collapse {
+  border-collapse: collapse;
+}
 .origin-top-left {
   transform-origin: top left;
 }
