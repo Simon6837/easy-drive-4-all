@@ -9,20 +9,14 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         if ($request->user()->hasRole('instructor')) {
-            return $this->instructorProfile();
+            $user = $request->user();
+            $response = view('/pages.instructors.profile', compact('user'));
         }
         if ($request->user()->hasRole('student')) {
-            return $this->studentProfile();
+            $user = $request->user();
+            $response = view('/pages.student.profile', compact('user'));
         }
+        return $response;
     }
 
-    private function instructorProfile()
-    {
-        return view('/pages.instructors.profile');
-    }
-
-    private function studentProfile()
-    {
-        return view('/pages.students.profile');
-    }
 }

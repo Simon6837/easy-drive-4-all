@@ -20,15 +20,15 @@
         @endrole
         {{--        Menu items for instructors--}}
         @role('instructor')
-        {{--        <x-dropdown-link :href="route('account')">--}}
-        {{--            Account pagina--}}
-        {{--        </x-dropdown-link>--}}
+        <x-dropdown-link :href="route('profile')">
+            Account
+        </x-dropdown-link>
         @endrole
         {{--        Menu items for students--}}
         @role('student')
-        {{--        <x-dropdown-link :href="route('account')">--}}
-        {{--            Account pagina--}}
-        {{--        </x-dropdown-link>--}}
+        <x-dropdown-link :href="route('profile')">
+            Account
+        </x-dropdown-link>
         @endrole
         {{--        Menu items bottom all roles--}}
         <x-dropdown-link :href="route('notifications')">
