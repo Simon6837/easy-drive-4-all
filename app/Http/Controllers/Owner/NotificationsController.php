@@ -102,7 +102,20 @@ class NotificationsController extends Controller
             ->with('Success', 'De melding is verwijderd');
     }
 
-    public function currentNofitifcations()
+    public function getFromRole(Request $request)
+    {
+        if ($request->user()->hasRole('owner')) {
+            return $this->index();
+        }
+        if ($request->user()->hasRole('instructor')) {
+            return $this->instructorNofitifcations();
+        }
+        if ($request->user()->hasRole('student')) {
+            return $this->studentNofitifcations();
+        }
+    }
+
+    private function currentNofitifcations()
     {
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
@@ -112,7 +125,8 @@ class NotificationsController extends Controller
         return view('pages.owner.notifications.active', compact('notifications'));
 
     }
-    public function studentNofitifcations()
+
+    private function studentNofitifcations()
     {
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
@@ -123,7 +137,7 @@ class NotificationsController extends Controller
 
     }
 
-    public function instructorNofitifcations()
+    private function instructorNofitifcations()
     {
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
