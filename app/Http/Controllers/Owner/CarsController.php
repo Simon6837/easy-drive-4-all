@@ -110,7 +110,8 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        foreach (explode(",", $id) as $value) {
+        foreach (explode(",", $id) as $value) 
+        {
             $car = Cars::find($value);
             $car->delete();
         }
