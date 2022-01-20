@@ -6,7 +6,12 @@
                 <!-- start item -->
                 <div class="mb-8 bg-white shadow rounded-lg">
                     <div class="rounded-t-lg w-full h-40 relative overflow-hidden">
+                        @if(!$car->image)
+                            <img class="absolute h-40 w-full object-cover"
+                                 src="assets/placeholders/RallyCar.jpg" alt="no image found">
+                        @else
                         <img class="absolute h-40 w-full object-cover" src="/assets/images/cars/{{ $car->image }}" alt="{{ $car->image }}">
+                        @endif
                     </div>
                     <div class="px-4 py-8">
                         <h2 class="text-lg font-semibold">{{$car->model}}</h2>

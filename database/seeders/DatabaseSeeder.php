@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         if (env("APP_DEBUG")) {
             $this->call(StudentSeeder::class);
             $this->call(InstructorSeeder::class);
+            $this->call(CarSeeder::class);
+            $this->call(AbsenceSeeder::class);
+            $this->call(NotificationsSeeder::class);
         }
     }
 }
