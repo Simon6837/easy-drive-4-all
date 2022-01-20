@@ -33,7 +33,7 @@
                         tempus vel vel urna. Maecenas euismod scelerisque nibh malesuada pretium. Etiam facilisis
                         ullamcorper rhoncus. Aliquam et tincidunt mauris, at egestas augue. Vestibulum gravida consequat
                         consequat. Vivamus sed luctus sem, quis pretium velit.</p> <br>
-                    <a class="block w-4/12 px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
+                    <a class="block w-full px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
                        href="/contact">Vragen? Stuur ons een berichtje!</a>
                 </div>
             </div>
@@ -45,13 +45,19 @@
             <h2 class="text-3xl font-semibold text-gray-800">Onze instructeurs</h2>
             <p class="max-w-lg mx-auto mt-4 text-gray-600">Speciaal opgeleid om u te leren rijden</p>
             <div class="grid gap-8 mt-6 md:grid-cols-2 lg:grid-cols-4">
-                {{--                loop deze div met instructeur info--}}
-                <div>
-                    <img class="object-cover object-center w-full h-64 rounded-md shadow"
-                         src="{{URL('assets/images/image.extension')}}">
-                    <h3 class="mt-2 font-medium text-gray-700">Naam</h3>
-                    <p class="text-sm text-gray-600">omschrijving</p>
-                </div>
+                @foreach($instructors as $instructor)
+                    <div>
+                        @if($instructor->instructor->image)
+                            <img style="height: 220px" class="object-cover object-center rounded-full"
+                                 src="/assets/images/instructors/{{ $instructor->instructor->image }}">
+                        @else
+                            <img style="height: 220px" class="object-cover object-center rounded-full"
+                                 src="assets/placeholders/User.png">
+                        @endif
+                        <h3 class="mt-2 font-medium text-gray-700">{{$instructor->first_name}} {{$instructor->prefix}} {{$instructor->last_name}}</h3>
+                        <p class="text-sm text-gray-600">{{$instructor->instructor->description}}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
