@@ -3,6 +3,7 @@
         <div class="container px-5 py-8 mx-auto">
             <div class="flex flex-wrap -m-4 text-center">
                 @include('pages.dashboards.components.notificationCard')
+                @include('pages.dashboards.components.profileCard')
             </div>
         </div>
     </section>
