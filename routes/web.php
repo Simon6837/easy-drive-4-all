@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Instructor\AbsenceController;
 use App\Http\Controllers\Owner\CarsController;
 use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
@@ -78,12 +79,24 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
     Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
     Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
+    //Ziekmeldingen
+    Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
 });
 
 //Get notification per role
 Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// Instructor role
 
+
+Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
+    //Ziekmeldingen
+    Route::get('/absence/active', [AbsenceController::class, 'active'])->name('activeabsences');
+    Route::get('/absence/create', [AbsenceController::class, 'create'])->name('absencecreate');
+    Route::get('/absence/edit/{id}', [AbsenceController::class, 'edit'])->name('absenceedit');
+    Route::post('/absence/store', [AbsenceController::class, 'store'])->name('absencestore');
+    Route::post('/absence/update', [AbsenceController::class, 'update'])->name('absenceupdate');
+});
 
 require __DIR__ . '/auth.php';
