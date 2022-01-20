@@ -1,114 +1,170 @@
 <x-app-layout>
     <div class="flex justify-center mx-auto pt-12">
-        <div class="flex flex-col">
-            <div class="w-full">
-                <div class="border-b border-gray-200 shadow">
-                    @if(Session::has('success'))
-                        <div class="text-green-400 text-center flex flex-col" role="alert">
-                            <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                        </div>
-                    @endif
-                        <div class="px-4 py-2 font-semibold bg-white">
-                            <a href="{{ route('carscreate') }}">
-                                <button
-                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                    Auto toevoegen
-                                </button>
-                            </a>
-                            <a href="{{ route('generatecars') }}">
-                                <button
-                                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                    Naar PDF exporteren
-                                </button>
-                            </a>
-                        </div>
-                    <table class="divide-y divide-gray-300 ">
-                        <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Image
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                ID
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Merk
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Model
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Type
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Kenteken
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Edit
-                            </th>
-                            <th class="px-6 py-2 text-xs text-gray-500">
-                                Delete
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach($cars as $car)
-                            <tr class="whitespace-nowrap">
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    <img src="/assets/images/cars/{{ $car->image }}" width="100px">
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{$car->id}}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
-                                        {{$car->brand}}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
-                                        {{$car->model}}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-500">
-                                        {{$car->type}}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{$car->license_plate}}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="cars/edit/{{$car->id}}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-6 h-6 text-blue-400"
-                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a onclick="openDialog({{$car->id}})">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-6 h-6 text-red-400"
-                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-
+        <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
+            <div class="px-4 py-2 font-semibold bg-white">
+                <div class="flex flex-row w-full lg:w-8/12 xl:w-6/12 2xl:w-4/12">
+                    <div class="basis-2/4 mr-4">
+                        <a href="{{ route('carscreate') }}">
+                            <button
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
+                                Auto toevoegen
+                            </button>
+                        </a>
+                    </div>
+                    <div class="basis-2/4">
+                        <button onclick="openDialogForMultipleItems()"
+                                id="multiple-deletion-button"
+                                class="w-full py-6 px-8 lg:py-2 lg:px-4 hidden bg-red-500 hover:bg-red-400 text-white rounded text-sm font-bold transition duration-200">
+                            Auto(s) verwijderen
+                        </button>
+                    </div>
                 </div>
             </div>
+            <table class="border-collapse w-full">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Foto</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Merk</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Model</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Type</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Kenteken</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($cars as $car)
+                    <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Select</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    <input type="checkbox" class="w-6 h-6 delete-multiple-items" value="{{$car->id}}">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Foto</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    <div class="flex justify-center">
+                                        <img class="w-6/12 lg:w-24" src="/assets/images/cars/{{ $car->image }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>ID</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    {{$car->id}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Merk</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    {{$car->brand}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Model</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    {{$car->model}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Type</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    {{$car->type}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Kenteken</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    {{$car->license_plate}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w-full lg:w-auto text-center p-0 border-t">
+                            <div class="flex flex-row h-full">
+                                <div
+                                    class="basis-2/6 md:basis-1/6 lg:hidden bg-gray-200 text-gray-500 text-xs font-bold uppercase flex justify-center items-center px-3 py-2">
+                                    <span>Actie</span>
+                                </div>
+                                <div class="basis-4/6 md:basis-5/6 px-3 py-2">
+                                    <div class="flex justify-center">
+                                        <div class="flex flex-row w-8/12 lg:w-full">
+                                            <div class="basis-2/4">
+                                                <div class="flex justify-center">
+                                                    <a class="cursor-pointer" href="cars/edit/{{$car->id}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                             class="w-12 h-12 lg:w-6 lg:h-6 text-blue-400"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="basis-2/4">
+                                                <div class="flex justify-center">
+                                                    <a class="cursor-pointer" onclick="openDialog({{$car->id}})">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                             class="w-12 h-12 lg:w-6 lg:h-6 text-red-400"
+                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <div id="modal" style="display:none;"
          class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
         <div class="absolute bg-black opacity-20 inset-0 z-0"></div>
-        <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+        <div class="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
             <!--content-->
             <div class="">
                 <!--body-->
@@ -125,46 +181,101 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <h2 class="text-xl font-bold py-4 ">Weet je het zeker?</h2>
-                    <p class="text-sm text-gray-500 px-8">Wil je echt dit bericht verwijderen, dit kan niet worden
-                        teruggezet.</p>
+                    <p class="text-sm text-gray-500 px-8">
+                        Weet je zeker dat je <span id="deletionAmount"></span> item(s) wilt verwijderen? Dit kan niet
+                        ongedaan worden gemaakt.
+                    </p>
                 </div>
                 <!--footer-->
-                <div class="p-3  mt-2 text-center space-x-4 md:block">
-                    <button onclick="closeDialog()"
-                            class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
-                        Annuleren
-                    </button>
-                    <button type="submit" onclick="deleteUser()"
-                            class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
-                        Verwijderen
-                    </button>
+                <div class="p-3 mt-2 text-center space-x-4">
+                    <div class="mx-auto w-full sm:w-8/12 flex flex-row">
+                        <div class="w-full mr-2 md:mr-4">
+                            <button type="submit" onclick="deleteItem()"
+                                    class="mb-2 w-9/12 sm:w-full mx-auto md:mb-0 bg-red-500 border border-red-500 px-3 py-2 md:px-5 md:py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
+                                Verwijderen
+                            </button>
+                        </div>
+                        <div class="w-full">
+                            <button onclick="closeDialog()"
+                                    class="mb-2 w-9/12 sm:w-full mx-auto md:mb-0 bg-white px-3 py-2 md:px-5 md:py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+                                Annuleren
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <script>
-            let gID = "";
+            const itemIDs = [];
+            const checkboxes = document.querySelectorAll('.delete-multiple-items');
+
+            window.onload = function () {
+                //Whenever the window loads go through all the checkboxes that are used
+                //when selecting multiple items to delete
+                checkboxes.forEach((checkbox) => {
+                    //Uncheck any already checked checkboxes
+                    checkbox.checked = false;
+                    //For each checkbox add them to a change event
+                    checkbox.addEventListener('change', (event) => {
+                        //Assign to function
+                        displayDeleteButtonForMultipleItems(event);
+                    });
+                });
+            }
+
+            function displayDeleteButtonForMultipleItems(event) {
+                const hiddenButton = document.getElementById("multiple-deletion-button");
+                if (event.target.checked) {
+                    if (window.getComputedStyle(hiddenButton).display == "none") {
+                        hiddenButton.style.display = "block";
+                    }
+                } else {
+                    let checked = false;
+                    checkboxes.forEach((checkbox) => {
+                        if (checkbox.checked) {
+                            checked = true;
+                        }
+                    });
+                    if (!checked) {
+                        //If no checkboxes are checked hide the delete button
+                        if (window.getComputedStyle(hiddenButton).display == "block") {
+                            hiddenButton.style.display = "none";
+                        }
+                    }
+                }
+            }
 
             function openDialog(id) {
-                gID = id;
+                itemIDs.push(id);
 
-                let modal = document.getElementById('modal');
-                modal.style.display = "";
+                document.getElementById("deletionAmount").innerHTML = "1";
+                document.getElementById('modal').style.display = "";
+            }
+
+            function openDialogForMultipleItems() {
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                        itemIDs.push(checkbox.value);
+                    }
+                });
+
+                document.getElementById("deletionAmount").innerHTML = itemIDs.length;
+                document.getElementById('modal').style.display = "";
             }
 
             function closeDialog() {
-                let modal = document.getElementById('modal');
-                modal.style.display = "none";
-
-                gID = "";
+                hideDialog();
+                itemIDs.length = 0;
             }
 
-            function deleteUser() {
-                let modal = document.getElementById('modal');
-                modal.style.display = "none";
+            function deleteItem() {
+                hideDialog();
+                window.location.replace(`/cars/delete/${itemIDs}`);
+                itemIDs.length = 0;
+            }
 
-                window.location.replace(`/cars/delete/${gID}`);
-
-                gID = "";
+            function hideDialog() {
+                document.getElementById('modal').style.display = "none";
             }
         </script>
 </x-app-layout>

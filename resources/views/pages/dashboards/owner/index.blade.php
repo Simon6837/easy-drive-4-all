@@ -7,6 +7,7 @@
                 @include('pages.dashboards.components.carCard')
                 @include('pages.dashboards.components.notificationCard')
                 @include('pages.dashboards.components.laratrustCard')
+                @include('pages.dashboards.components.ownerAbsenceCard')
             </div>
         </div>
     </section>

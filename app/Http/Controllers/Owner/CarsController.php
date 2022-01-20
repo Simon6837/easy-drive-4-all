@@ -110,8 +110,11 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        $car = Cars::find($id);
-        $car->delete();
+        foreach (explode(",", $id) as $value) 
+        {
+            $car = Cars::find($value);
+            $car->delete();
+        }
 
         return redirect()->route('carsindex')
             ->with('Success', 'Auto is verwijderd');
