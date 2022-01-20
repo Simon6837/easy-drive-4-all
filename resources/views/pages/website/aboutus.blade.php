@@ -15,11 +15,14 @@
                 <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
                     <h1 class="text-3xl mb-4">Over ons</h1>
                     <p>
-                        EasyDrive4All is in de afgelopen 15 jaar uitgegroeid tot een bedrijf van meer dan 100 medewerkers dat rijopleidingen aanbiedt in Nederland. 
+                        EasyDrive4All is in de afgelopen 15 jaar uitgegroeid tot een bedrijf van meer dan 100
+                        medewerkers dat rijopleidingen aanbiedt in Nederland.
                         Duizenden mensen behalen jaarlijks hun rijbewijs bij onze rijschool.
-                        Het is opvallend hoeveel geslaagden ook broers, zussen, vrienden en collega's later opgeven als nieuwe leerling bij EasyDrive4All.
-                        Het voordeel van een grote organisatie is flexibiliteit. 
-                        Ook hebben wij de beschikking over een professionele klantenservice die de instructeurs ondersteunt bij jouw opleidingstraject.
+                        Het is opvallend hoeveel geslaagden ook broers, zussen, vrienden en collega's later opgeven als
+                        nieuwe leerling bij EasyDrive4All.
+                        Het voordeel van een grote organisatie is flexibiliteit.
+                        Ook hebben wij de beschikking over een professionele klantenservice die de instructeurs
+                        ondersteunt bij jouw opleidingstraject.
                     </p>
                 </section>
                 <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">
@@ -32,7 +35,8 @@
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
-                                                    <div class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
+                                                    <div
+                                                        class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
                                                         <i class="text-indigo-600 fas fa-user fa-3x"></i>
                                                     </div>
                                                 </div>
@@ -40,7 +44,8 @@
                                             <div class="md:basis-10/12 pl-2">
                                                 <h3 class="text-2xl">Vaste instructeur</h3>
                                                 <p>
-                                                    Een vaste instructeur zorgt ervoor dat hij je voortgang goed kent en weet op welke gebieden je evt. 
+                                                    Een vaste instructeur zorgt ervoor dat hij je voortgang goed kent en
+                                                    weet op welke gebieden je evt.
                                                     Meer hulp nodig hebt.
                                                 </p>
                                             </div>
@@ -51,7 +56,8 @@
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
-                                                    <div class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
+                                                    <div
+                                                        class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
                                                         <i class="text-indigo-600 fas fa-clock fa-3x"></i>
                                                     </div>
                                                 </div>
@@ -74,7 +80,8 @@
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
-                                                    <div class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
+                                                    <div
+                                                        class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
                                                         <i class="text-indigo-600 fas fa-calendar-alt fa-3x"></i>
                                                     </div>
                                                 </div>
@@ -82,7 +89,8 @@
                                             <div class="md:basis-10/12 pl-2">
                                                 <h3 class="text-2xl">Flexibele tijden</h3>
                                                 <p>
-                                                    Je kunt bij ons makkelijk (24 uur van te voren) lessen annuleren als de tijden je niet uitkomen.
+                                                    Je kunt bij ons makkelijk (24 uur van te voren) lessen annuleren als
+                                                    de tijden je niet uitkomen.
                                                 </p>
                                             </div>
                                         </div>
@@ -92,7 +100,8 @@
                                         <div class="flex flex-row">
                                             <div class="md:basis-2/12">
                                                 <div class="">
-                                                    <div class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
+                                                    <div
+                                                        class="text-center flex justify-center items-center m-auto border-2 rounded-full border-indigo-600 w-20 h-20">
                                                         <i class="text-indigo-600 fas fa-thumbs-up fa-3x"></i>
                                                     </div>
                                                 </div>
@@ -100,7 +109,9 @@
                                             <div class="md:basis-10/12 pl-2">
                                                 <h3 class="text-2xl">Hoge slagingspercentage</h3>
                                                 <p>
-                                                    Omdat onze rijinstructeurs zich aan de leerlingen aanpassen, heeft onze rijschool een hogere slagingspercentage in vergelijking met onze competitie.
+                                                    Omdat onze rijinstructeurs zich aan de leerlingen aanpassen, heeft
+                                                    onze rijschool een hogere slagingspercentage in vergelijking met
+                                                    onze competitie.
                                                 </p>
                                             </div>
                                         </div>
@@ -117,18 +128,28 @@
                             <picture>
                                 <source srcset="assets/about-us/lesson-car.jpg">
                                 <source srcset="assets/about-us/lesson-car.png">
-                                <img class="w-full h-full object-cover pr-4" src="assets/about-us/lesson-car.webp" alt="les-auto">
+                                <img class="w-full h-full object-cover pr-4" src="assets/about-us/lesson-car.webp"
+                                     alt="les-auto">
                             </picture>
                         </div>
                         <div class="lg:basis-6/12">
-                            Van smalle straatjes rondom de Peperbus tot de A28, de hoofdstad van Overijssel is een ideale stad om rijles te volgen. 
-                            De afstanden zijn klein waardoor je snel kunt leren wat op dat moment nodig is. 
+                            Van smalle straatjes rondom de Peperbus tot de A28, de hoofdstad van Overijssel is een
+                            ideale stad om rijles te volgen.
+                            De afstanden zijn klein waardoor je snel kunt leren wat op dat moment nodig is.
                             Bovendien kun je via onze rijschool ook afrijden in Zwolle.
                             <br><br>
-                            Door de ervaring die wij met rijden in Zwolle hebben, kiezen wij voor de les een route waarin je zoveel mogelijk kunt leren en je met het minimaal aantal lessen klaar bent voor je rijexamen. 
-                            Neem voor meer informatie over onze rijschool neem vrijblijvend <a class="text-blue-600 visited:text-purple-600 hover:underline" href="{{route('contact')}}">contact</a> met ons op. 
+                            Door de ervaring die wij met rijden in Zwolle hebben, kiezen wij voor de les een route
+                            waarin je zoveel mogelijk kunt leren en je met het minimaal aantal lessen klaar bent voor je
+                            rijexamen.
+                            Neem voor meer informatie over onze rijschool neem vrijblijvend <a
+                                class="text-blue-600 visited:text-purple-600 hover:underline"
+                                href="{{route('contact')}}">contact</a> met ons op.
                             <br><br>
-                            Dat kan door te bellen naar <a class="text-blue-600 visited:text-purple-600 hover:underline" href="tel:+31 123456789">+31 123456789</a> of een e-mail te sturen naar <a class="text-blue-600 visited:text-purple-600 hover:underline" href="mailto:info@drive4all.org">info@drive4all.org</a>.
+                            Dat kan door te bellen naar <a class="text-blue-600 visited:text-purple-600 hover:underline"
+                                                           href="tel:{{ Config::get('contact_info.phone') }}">{{ Config::get('contact_info.phone') }}</a>
+                            of een e-mail te sturen naar <a
+                                class="text-blue-600 visited:text-purple-600 hover:underline"
+                                href="mailto:{{ Config::get('contact_info.email') }}">{{ Config::get('contact_info.email') }}</a>.
                             Bij onze rijschool in Zwolle haal je eenvoudig je rijbewijs voor de beste prijs!
                         </div>
                     </div>

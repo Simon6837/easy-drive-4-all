@@ -8,6 +8,7 @@ use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
 use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -25,11 +26,9 @@ use App\Http\Controllers\HomeController;
 
 //Website routes
 //home page
-Route::get('/', function () {
-    return view('/pages.website.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', function () {
-    return view('/pages.website.home');
+    return redirect(route('home'));
 })->name('homepage');
 //signup request
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
@@ -83,13 +82,7 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
 });
 
-//Get notification per role
-Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
-//Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 // Instructor role
-
-
 Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
     //Ziekmeldingen
     Route::get('/absence/active', [AbsenceController::class, 'active'])->name('activeabsences');
@@ -99,4 +92,12 @@ Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function
     Route::post('/absence/update', [AbsenceController::class, 'update'])->name('absenceupdate');
 });
 
+//Get notification per role
+Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
+//Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+//Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['role:student|instructor', 'auth'])->name('profile');
+
+//Auth routes
 require __DIR__ . '/auth.php';
