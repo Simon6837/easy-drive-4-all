@@ -25,8 +25,9 @@
                                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                             <div class="ml-4 text-md tracking-wide font-semibold w-50">
-                                Mozartlaan 15, 8031AA<br>
-                                Zwolle, Overijssel,
+                                {{ Config::get('contact_info.address') }}, {{ Config::get('contact_info.postal_code') }}
+                                <br>
+                                {{ Config::get('contact_info.city') }},
                             </div>
                         </div>
 
@@ -37,7 +38,7 @@
                                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                             <div class="ml-4 text-md tracking-wide font-semibold w-40">
-                                +31 123456789
+                                <a href="tel:{{ Config::get('contact_info.phone') }}">{{ Config::get('contact_info.phone') }}</a>
                             </div>
                         </div>
 
@@ -48,7 +49,7 @@
                                       d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                             <div class="ml-4 text-md tracking-wide font-semibold w-40">
-                                info@drive4all.org
+                                <a href="mailto:{{ Config::get('contact_info.email') }}">{{ Config::get('contact_info.email') }}</a>
                             </div>
                         </div>
                     </div>
@@ -68,9 +69,9 @@
                             <label for="email" class="hidden">Email</label>
                             <input type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}"
                                    class="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none">
-                                @if ($errors->has('email'))
-                                   <p class="ml-4 text-red-600">{{ $errors->first('email') }}</p>
-                               @endif
+                            @if ($errors->has('email'))
+                                <p class="ml-4 text-red-600">{{ $errors->first('email') }}</p>
+                            @endif
                         </div>
 
                         <div class="flex flex-col mt-2">
