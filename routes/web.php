@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Instructor\AbsenceController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
 use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
+use App\Http\Controllers\Owner\TextController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
@@ -34,12 +36,7 @@ Route::get('/home', function () {
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
 //info pages
 Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
-Route::get('/about-us', function () {
-    return view('/pages.website.aboutus');
-})->name('aboutus');
-Route::get('/services', function () {
-    return view('/pages.website.services');
-})->name('services');
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('aboutus');
 //contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
@@ -78,6 +75,10 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
     Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
     Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
+    //Text table and edit
+    Route::get('texts', [TextController::class, 'index'])->name('textindex');
+    Route::get('text/edit/{id}', [TextController::class, 'edit'])->name('textedit');
+    Route::post('text/update', [TextController::class, 'update'])->name('textupdate');
     //Ziekmeldingen
     Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
 });
