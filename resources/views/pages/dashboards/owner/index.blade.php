@@ -8,7 +8,6 @@
                 @include('pages.dashboards.components.notificationCard')
                 @include('pages.dashboards.components.laratrustCard')
                 @include('pages.dashboards.components.ownerAbsenceCard')
-                @include('pages.dashboards.components.profileCard')
                 @include('pages.dashboards.components.textCard')
             </div>
         </div>
