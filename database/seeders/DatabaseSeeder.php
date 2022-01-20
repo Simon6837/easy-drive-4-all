@@ -13,10 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
-        $this->call(StudentSeeder::class);
-        $this->call(InstructorSeeder::class);
+        $this->call(TextSeeder::class);
 
+        if (env("APP_DEBUG")) {
+            $this->call(StudentSeeder::class);
+            $this->call(InstructorSeeder::class);
+        }
     }
 }

@@ -8,10 +8,6 @@
 </x-nav-link>
 <x-nav-link style="color: rgba(229, 231, 235);"
             class="text-sm font-medium text-gray-200 transition-colors duration-300 transform"
-            :href="route('services')" :active="request()->routeIs('services')">Diensten
-</x-nav-link>
-<x-nav-link style="color: rgba(229, 231, 235);"
-            class="text-sm font-medium text-gray-200 transition-colors duration-300 transform"
             :href="route('aboutus')" :active="request()->routeIs('aboutus')">Over ons
 </x-nav-link>
 <x-nav-link style="color: rgba(229, 231, 235);"
