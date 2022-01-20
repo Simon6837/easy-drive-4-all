@@ -13,7 +13,7 @@ class InstructorController extends Controller
 {
     public function index()
     {
-        $instructors = User::has('instructor')->with('instructor')->get()->where('active', '=', 1);;
+        $instructors = User::has('instructor')->with('instructor')->get()->where('active', '=', 1);
         return view('pages.owner.instructors.index', compact('instructors'));
     }
 

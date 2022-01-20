@@ -7,6 +7,7 @@ use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
 use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\StudentController;
+use App\Http\Controllers\Owner\TextController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
@@ -77,6 +78,9 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
     Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
     Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
+    Route::get('texts', [TextController::class, 'index'])->name('textindex');
+    Route::get('text/edit/{id}', [TextController::class, 'edit'])->name('textedit');
+    Route::post('text/update', [TextController::class, 'update'])->name('textupdate');
 });
 
 //Get notification per role
