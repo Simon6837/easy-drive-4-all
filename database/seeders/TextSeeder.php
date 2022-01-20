@@ -24,38 +24,38 @@ class TextSeeder extends Seeder
             [
                 'page' => 'about-us',
                 'position' => 1,
-                'title' => 'stad',
+                'title' => 'Over ons',
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat. Praesent sit amet dolor euismod, mollis leo non, tristique arcu. Pellentesque et fermentum tellus, vel dignissim mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ac lorem vitae ante molestie sodales et fringilla sapien. Proin elementum lectus ac mi posuere malesuada. Nam lacinia tristique quam, volutpat porta augue sodales quis. Curabitur fringilla nibh sit amet leo aliquet tincidunt. Proin tempor sit amet enim sit amet sollicitudin. Cras eu vulputate purus. Curabitur augue arcu, semper sed placerat at, vestibulum ac urna. Praesent rutrum diam sed euismod euismod. In non tortor ut lectus varius finibus. Phasellus suscipit dapibus felis quis tempus. In commodo diam leo, eu porta enim ullamcorper sed. Nullam in tellus ac odio euismod tempus vel vel urna. Maecenas euismod scelerisque nibh malesuada pretium. Etiam facilisis ullamcorper rhoncus. Aliquam et tincidunt mauris, at egestas augue. Vestibulum gravida consequat consequat. Vivamus sed luctus sem, quis pretium velit.',
             ],
             [
                 'page' => 'about-us',
                 'position' => 2,
-                'title' => 'title',
+                'title' => 'Vaste instructeur',
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat.',
             ],
             [
                 'page' => 'about-us',
                 'position' => 3,
-                'title' => 'title',
+                'title' => 'Verschillende les duuraties',
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat.',
             ],
             [
                 'page' => 'about-us',
                 'position' => 4,
-                'title' => 'title',
+                'title' => 'Flexibele tijden',
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat.',
             ],
             [
                 'page' => 'about-us',
                 'position' => 5,
-                'title' => 'title',
+                'title' => 'Hoge slagingspercentage',
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat.',
             ],
             [
                 'page' => 'about-us',
                 'position' => 6,
-                'title' => 'title',
-                'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat.',
+                'title' => 'Onze rijschool helpt jou op weg!',
+                'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec venenatis odio, a facilisis augue. Sed nec bibendum sem. Sed eu lacus scelerisque, sagittis magna in, hendrerit orci. Morbi tempus bibendum dapibus. Aliquam sagittis elit egestas maximus dictum. Sed vehicula pretium suscipit. Vestibulum tempor sem a est imperdiet, a venenatis purus finibus. Sed semper venenatis magna id tristique. Vestibulum sagittis sem ex, eu pellentesque dolor laoreet eget.',
             ],
         ];
         foreach ($data as $item) {

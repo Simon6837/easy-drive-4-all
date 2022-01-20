@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Owner\CarsController;
@@ -34,12 +35,7 @@ Route::get('/home', function () {
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
 //info pages
 Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
-Route::get('/about-us', function () {
-    return view('/pages.website.aboutus');
-})->name('aboutus');
-Route::get('/services', function () {
-    return view('/pages.website.services');
-})->name('services');
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('aboutus');
 //contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
