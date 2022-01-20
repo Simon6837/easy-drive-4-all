@@ -25,11 +25,9 @@ use App\Http\Controllers\HomeController;
 
 //Website routes
 //home page
-Route::get('/', function () {
-    return view('/pages.website.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', function () {
-    return view('/pages.website.home');
+    return redirect(route('home'));
 })->name('homepage');
 //signup request
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
