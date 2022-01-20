@@ -55,7 +55,13 @@
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2">
                                     <div class="flex justify-center">
-                                        <img class="w-6/12 lg:w-24" src="/assets/images/cars/{{ $car->image }}">
+                                        @if($car->image)
+                                            <img class="w-6/12 lg:w-24" src="/assets/images/cars/{{ $car->image }}">
+                                        @else
+                                            <div class="text-sm text-gray-900">
+                                                Geen foto ingesteld
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
