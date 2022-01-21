@@ -1,6 +1,7 @@
 <table style="margin: 0 auto">
-    <td><h2>{{$data["firstName"]}} {{$data["lastName"]}} wil zich aanmelden voor rijlessen, hieronder alle
-            informatie:</h2></td>
+    <td><h2>
+            Hallo {{$data["firstName"]}} {{$data["lastName"]}} we hebben je aanmelding ontvangen. <br>
+            hieronder vind je een kopie van je aanmelding:</h2></td>
 </table>
 <table style="margin: 0 auto">
     <tr>
