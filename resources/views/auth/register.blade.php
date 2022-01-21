@@ -1,9 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+        <x-slot name="logo" class="align-content-center items-center justify-between">
+            <a href="/"><img class="spin m-2 h-14 fill-current" src="{{URL('assets/logo-short.jpg')}}"></a>
         </x-slot>
 
         <!-- Validation Errors -->
