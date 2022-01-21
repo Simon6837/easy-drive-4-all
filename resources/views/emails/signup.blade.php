@@ -1,6 +1,9 @@
-<table style="margin: 0 auto">
-    <td><h2>{{$data["firstName"]}} {{$data["lastName"]}} wil zich aanmelden voor rijlessen, hieronder alle
-            informatie:</h2></td>
+<table style="margin: 0 auto; text-align: center">
+    <td>
+        <h2>{{$data["firstName"]}} {{$data["lastName"]}} wil zich aanmelden voor rijlessen, hieronder alle
+            informatie:
+        </h2>
+    </td>
 </table>
 <table style="margin: 0 auto">
     <tr>
@@ -23,4 +26,9 @@
         <td>Email:</td>
         <td><a href="mailto:{{$data["email"]}}">{{$data["email"]}}</a></td>
     </tr>
+</table>
+<table style="margin: 0 auto; text-align: center">
+    <td>
+        Met vriendelijke groet,<br> {{env('APP_NAME')}}
+    </td>
 </table>
