@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <form method="POST" action="{{ route('contact.store') }}" class="p-6 flex flex-col justify-center">
+                    <form method="POST" action="{{ route('contactsend') }}" class="p-6 flex flex-col justify-center">
                         @csrf
                         <div class="flex flex-col">
                             <label for="name" class="hidden">Full Name</label>

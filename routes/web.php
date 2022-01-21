@@ -39,7 +39,7 @@ Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('aboutus');
 //contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'sendContactMail'])->name('contactsend');
 
 //Owner routes
 Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
