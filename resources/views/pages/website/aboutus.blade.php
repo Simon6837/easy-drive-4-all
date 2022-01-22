@@ -3,7 +3,7 @@
         <div class="container max-w-5xl mx-auto mb-6">
             <div>
                 <picture>
-                    <img class="w-full max-h-96" src="assets/about-us/main.webp" alt="about-us-image">
+                    <img class="w-full" src="assets/about-us/main.webp" alt="about-us-image">
                 </picture>
             </div>
             <div class="mt-8">
@@ -12,8 +12,8 @@
                         @if($item['position'] == 1) <h1 class="text-3xl mb-4">{{$item['title']}}</h1>
                         <p>
                             {{$item['text']}}
-
-                        </p>@endif
+                        </p>
+                        @endif
                     @endforeach
                 </section>
                 <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">

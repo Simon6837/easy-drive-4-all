@@ -15,17 +15,27 @@
                         </div>
                     </div>
                     <div class="px-12 py-8">
-                        <h2 class="w-full text-center text-3xl font-bold">{{$user->first_name}} {{$user->prefix}} {{$user->last_name}}</h2>
-                        <div class="mt-5 flex justify-center">
+                        <div class="mx-auto w-96 max-w-96 break-words">
+                            <h2 
+                                class="w-full text-center text-3xl line-clamp-5 xl:line-clamp-3 font-bold">
+                                {{$user->first_name}} {{$user->prefix}} {{$user->last_name}}
+                            </h2>
+                        </div>
+                        <div class="mt-7 mb-7 flex justify-center">
                             <ul class="list-none w-80">
                                 <li>
                                     <div class="flex flex-row mb-4">
                                         <div class="basis-1/4 grid content-center">
                                             <i class="text-indigo-600 fas fa-at fa-2x"></i>
                                         </div>
-                                        <div class="basis-3/4 grid content-center text-right">
-                                            <a class="text-blue-600 visited:text-purple-600 hover:underline"
-                                               href="mailto:{{$user->email}}">{{$user->email}}</a>
+                                        <div class="basis-3/4 grid content-center">
+                                            <div class="w-full text-right">
+                                                <a 
+                                                    class="text-blue-600 visited:text-purple-600 hover:underline line-clamp-5 xl:line-clamp-3"
+                                                    href="mailto:{{$user->email}}">
+                                                    {{$user->email}}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>

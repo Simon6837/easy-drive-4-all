@@ -28,13 +28,55 @@
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Role</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Title</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Notificatie</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Geldig tot</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Select</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>ID</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Role</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Title</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Notificatie</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Geldig tot</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Actie</p>
+                            </div>        
+                        </div>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,7 +123,7 @@
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <div class="w-48 max-w-48 sm:w-80 sm:max-w-80 lg:w-28 lg:max-w-28 xl:w-36 xl:max-w-36 2xl:w-56 2xl:max-w-56 break-words">
-                                        <p class="line-clamp-3">
+                                        <p class="">
                                             {{$notification->title}}
                                         </p>
                                     </div>
@@ -96,7 +138,7 @@
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <div class="w-48 max-w-48 sm:w-80 sm:max-w-80 lg:w-28 lg:max-w-28 xl:w-36 xl:max-w-36 2xl:w-56 2xl:max-w-56 break-words">
-                                        <p class="line-clamp-6 xl:line-clamp-4">
+                                        <p class="">
                                             {{$notification->notification}}
                                         </p>
                                     </div>
@@ -160,6 +202,7 @@
             </table>
         </div>
     </div>
+    <div class="container h-24 mb-4"></div>
     <div id="modal" style="display:none;"
          class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
         <div class="absolute bg-black opacity-20 inset-0 z-0"></div>
