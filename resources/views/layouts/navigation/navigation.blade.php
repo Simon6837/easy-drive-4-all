@@ -29,13 +29,28 @@
                             <button
                                 class="flex p-1 items-center text-sm font-medium text-gray-300 hover:border-gray-300 focus:outline-none focus:text-white focus:border-gray-300 transition duration-150 ease-in-out">
                                 @role('student')
-                                <div>Hallo, leerling {{ Auth::user()->first_name }}</div>
+                                <div class="text-left w-max md:w-min lg:w-max">
+                                    Hallo, leerling 
+                                    <div class="inline-block w-24 md:w-24 md:max-w-24 lg:w-24 lg:max-w-36 2xl:w-24 2xl:w-max-60 text-ellipsis overflow-hidden align-top">
+                                        {{ Auth::user()->first_name }}
+                                    </div>
+                                </div>
                                 @endrole
                                 @role('instructor')
-                                <div>Hallo, instructeur {{ Auth::user()->first_name }}</div>
+                                <div class="text-left w-max md:w-min lg:w-max">
+                                    Hallo, instructeur 
+                                    <div class="inline-block w-24 md:w-24 md:max-w-24 lg:w-24 lg:max-w-36 2xl:w-24 2xl:w-max-60 text-ellipsis overflow-hidden align-top">
+                                        {{ Auth::user()->first_name }}
+                                    </div>
+                                </div>
                                 @endrole
                                 @role('owner')
-                                <div>Hallo, eigenaar {{ Auth::user()->first_name }}</div>
+                                <div class="text-left w-max md:w-min lg:w-max">
+                                    Hallo, eigenaar 
+                                    <div class="inline-block w-24 md:w-24 md:max-w-24 lg:w-24 lg:max-w-36 2xl:w-24 2xl:w-max-60 text-ellipsis overflow-hidden align-top">
+                                        {{ Auth::user()->first_name }}
+                                    </div>
+                                </div>
                                 @endrole
 
                                 <div class="ml-1">

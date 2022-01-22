@@ -12,8 +12,8 @@
                         @if($item['position'] == 1) <h1 class="text-3xl mb-4">{{$item['title']}}</h1>
                         <p>
                             {{$item['text']}}
-
-                        </p>@endif
+                        </p>
+                        @endif
                     @endforeach
                 </section>
                 <section class="mb-12 px-6 py-16 bg-white shadow rounded-lg">

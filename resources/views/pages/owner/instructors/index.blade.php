@@ -36,16 +36,76 @@
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Foto</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Naam</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Email</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Adres</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Plaats</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Postcode</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:hidden 2xl:table-cell">Omschrijving</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Select</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Foto</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>ID</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Naam</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Email</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Adres</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Plaats</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Postcode</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:hidden 2xl:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Omschrijving</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Actie</p>
+                            </div>        
+                        </div>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,7 +150,7 @@
                                     <span>ID</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
-                                    <div class="w-12 max-w-12 break-words">
+                                    <div class="w-12 max-w-12 lg:w-6 lg:max-w-6 break-words">
                                         {{$instructor->id}}
                                     </div>
                                 </div>
@@ -103,7 +163,7 @@
                                     <span>Naam</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 max-w-full flex justify-center">
-                                    <div class="w-48 max-w-48 md:w-96 md:max-w-96 lg:w-28 lg:max-w-28 xl:w-36 lg:max-w-36 break-words">
+                                    <div class="w-48 max-w-48 md:w-96 md:max-w-96 lg:w-24 lg:max-w-24 xl:w-36 lg:max-w-36 break-words">
                                         <p class="line-clamp-5">
                                             {{$instructor->first_name}} {{$instructor->prefix}} {{$instructor->last_name}}
                                         </p>
@@ -131,7 +191,7 @@
                                     <span>Adres</span>
                                 </div>
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 max-w-full flex justify-center">
-                                    <div class="w-24 max-w-24 break-words text-center">
+                                    <div class="w-24 max-w-24 lg:w-16 lg:max-w-16 xl:w-24 xl:max-w-24 break-words text-center">
                                         {{$instructor->instructor->address}}
                                     </div>
                                 </div>
@@ -224,6 +284,7 @@
             </table>
         </div>
     </div>
+    <div class="container h-24 mb-4"></div>
     <div id="modal" style="display:none;"
          class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
         <div class="absolute bg-black opacity-20 inset-0 z-0"></div>

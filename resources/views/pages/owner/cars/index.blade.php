@@ -23,14 +23,62 @@
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Select</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Foto</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">ID</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Merk</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Model</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Type</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Kenteken</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">Actie</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Select</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Foto</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>ID</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Merk</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Model</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Type</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Kenteken</p>
+                            </div>        
+                        </div>
+                    </th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
+                        <div class="flex">
+                            <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
+                                <p>Actie</p>
+                            </div>        
+                        </div>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -167,6 +215,7 @@
             </table>
         </div>
     </div>
+    <div class="container h-24 mb-4"></div>
     <div id="modal" style="display:none;"
          class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
         <div class="absolute bg-black opacity-20 inset-0 z-0"></div>
