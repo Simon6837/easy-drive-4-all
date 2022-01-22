@@ -1,11 +1,17 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <div class="bg-gray-100 relative flex items-top justify-center min-h-screen bg-white sm:items-center sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="mt-8 bg-white shadow shadow-gray-600 rounded-lg overflow-hidden">
                 @if(Session::has('success'))
-                    <div class="text-green-400 text-center flex flex-col" role="alert">
-                        <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                    </div>
+                    <script>
+                         swal({
+                            title: "Wij hebben uw vraag ontvngen!",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    </script>
                 @endif
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="p-6 mr-2 bg-white sm:rounded-lg">

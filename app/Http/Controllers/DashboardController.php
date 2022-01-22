@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cars;
-use App\Models\Notifications;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Cars;
+use App\Models\User;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
+use App\Models\Notifications;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -38,10 +41,19 @@ class DashboardController extends Controller
 
     private function instructorDashboard()
     {
+        $user_id = Auth::id();
+        $instructor = DB::table('users')
+        ->join('instructors', 'users.id', '=', 'instructors.user_id')
+        ->where('instructors.user_id', '=', $user_id)
+        ->select('instructors.id')
+        ->first();
+
+        $instructor_id = $instructor->id;
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
         $data = [
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->count(),
+            'lessonsCount' => Lesson::where('instructor_id', '=', $instructor_id)->count(),
         ];
         return view('pages.dashboards.instructor.index', compact('data'));
     }

@@ -19,7 +19,7 @@ class Instructor extends Model
         'image'
     ];
 
-//    public function instructor(){
-//        return $this->belongsTo(User::class, 'user_id');
-//    }
+   public function instructor(){
+       return $this->belongsTo(User::class, 'user_id');
+   }
 }

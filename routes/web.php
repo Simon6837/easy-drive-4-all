@@ -1,16 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Owner\CarsController;
+use App\Http\Controllers\Lesson\LessonController;
+use App\Http\Controllers\Owner\StudentController;
 use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
-use App\Http\Controllers\Owner\PDFController;
-use App\Http\Controllers\Owner\StudentController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,27 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
     Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
     Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
+});
+
+//Instructors routes
+Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
+    //Lesson crud
+    Route::get('/lessons', [LessonController::class, 'index'])->name('lessonindex');
+    Route::get('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
+    Route::post('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
+
+    Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lessonedit');
+    Route::post('/lesson/store', [LessonController::class, 'store'])->name('lessonstore');
+    Route::post('/lesson/update', [LessonController::class, 'update'])->name('lessonupdate');
+    Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lessondelete');
+
+    //Notifications crud
+    Route::get('/notifications/all', [NotificationsController::class, 'index'])->name('notificationsindex');
+    Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
+    Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
+    Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
+    Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
+    Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
 });
 
 //Get notification per role
