@@ -3,7 +3,7 @@
         <div class="container max-w-5xl mx-auto mb-6">
             <div>
                 <picture>
-                    <img class="w-full max-h-96" src="assets/about-us/main.webp" alt="about-us-image">
+                    <img class="w-full" src="assets/about-us/main.webp" alt="about-us-image">
                 </picture>
             </div>
             <div class="mt-8">
