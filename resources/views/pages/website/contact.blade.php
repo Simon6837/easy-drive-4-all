@@ -7,7 +7,7 @@
                 @if(Session::has('success'))
                     <script>
                          swal({
-                            title: "Wij hebben uw vraag ontvngen!",
+                            title: "{{Session::get('success')}}",
                             icon: "success",
                             button: "Ok!",
                         });
