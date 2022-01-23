@@ -82,15 +82,6 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
 
 //Instructors routes
 Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
-    //Lesson crud
-    Route::get('/lessons', [LessonController::class, 'index'])->name('lessonindex');
-    Route::get('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
-    Route::post('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
-
-    Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lessonedit');
-    Route::post('/lesson/store', [LessonController::class, 'store'])->name('lessonstore');
-    Route::post('/lesson/update', [LessonController::class, 'update'])->name('lessonupdate');
-    Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lessondelete');
 
     //Notifications crud
     Route::get('/notifications/all', [NotificationsController::class, 'index'])->name('notificationsindex');
@@ -99,6 +90,15 @@ Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function
     Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
     Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
     Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+});
+
+//All users routes
+Route::group(['middleware' => ['role:owner|instructor|student', 'auth', 'verified']], function () {
+
+    //Lesson crud
+    Route::get('/lessons', [LessonController::class, 'index'])->name('lessonindex');
+    Route::get('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
+    Route::post('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
 });
 
 //Get notification per role
