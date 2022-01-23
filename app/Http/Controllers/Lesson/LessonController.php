@@ -16,6 +16,20 @@ class LessonController extends Controller
     // Fetch all data
     public function index(Request $request)     
     {
+        if ($request->user()->hasRole('owner')) {
+            return $this->ownerLessons();
+        }
+        if ($request->user()->hasRole('instructor')) {
+            return $this->instructorLessons();
+        }
+        if ($request->user()->hasRole('student')) {
+            return $this->studentLessons();
+        }
+
+    }
+
+    private function ownerLessons()
+    {
         $all_students = DB::table('users')
         ->join('students', 'students.user_id', '=', 'users.id')
         ->select('students.id', 'users.first_name', 'users.last_name')
@@ -32,7 +46,50 @@ class LessonController extends Controller
         }
         return view('pages.lesson.lesson', compact('lessons', 'all_students'));
     }
+    private function instructorLessons()
+    {
+        $user_id = Auth::id();
 
+        $instructor_id = DB::table('users')
+        ->join('instructors', 'users.id', '=', 'instructors.user_id')
+        ->where('instructors.user_id', '=', $user_id)
+        ->select('instructors.id')
+        ->first();
+
+        $all_students = DB::table('users')
+        ->join('students', 'students.user_id', '=', 'users.id')
+        ->select('students.id', 'users.first_name', 'users.last_name')
+        ->get();
+
+        $lessons = array();
+        $all_lessons = Lesson::where('instructor_id', '=', $instructor_id->id)->get();
+        foreach($all_lessons as $lesson){
+            $lessons[] = [
+                'id' => $lesson->id,
+                'start' => $lesson->start_date,
+                'end' => $lesson->end_date,
+            ];
+        }
+        return view('pages.lesson.lesson', compact('lessons', 'all_students'));
+    }
+    private function studentLessons()
+    {
+        $all_students = DB::table('users')
+        ->join('students', 'students.user_id', '=', 'users.id')
+        ->select('students.id', 'users.first_name', 'users.last_name')
+        ->get();
+
+        $lessons = array();
+        $all_lessons = Lesson::All();
+        foreach($all_lessons as $lesson){
+            $lessons[] = [
+                'id' => $lesson->id,
+                'start' => $lesson->start_date,
+                'end' => $lesson->end_date,
+            ];
+        }
+        return view('pages.lesson.lesson', compact('lessons', 'all_students'));
+    }
     // CRUD FUNCTION
     public function option(Request $request)
     {
@@ -44,23 +101,52 @@ class LessonController extends Controller
         ->select('instructors.id')
         ->first();
 
+        $start = $request->start_date;
+        $end = $request->end_dat;
+
+        $same_time = Lesson::whereBetween('start_date', [$start, $end])
+                            ->whereBetween('end_date', [$start, $end])
+                            ->first();
 
         if($request->ajax()){
 
             // Add new lesson
             if($request->type == 'add')
             {
-                $new_lesson = Lesson::create([
-                    'instructor_id' => $instructor_id->id,
-                    'student_id' => $request->student,
-                    'pickup_address' => $request->adress,
-                    'pickup_postal_code' => $request->postcode,
-                    'pickup_city' => $request->city,
-                    'goal' => $request->goal,
-                    'start_date' => $request->start_date,
-                    'end_date' => $request->end_date,
-                ]);
-                return response()->json($new_lesson);
+                if(!$same_time){
+                    $new_lesson = Lesson::create([
+                        'instructor_id' => $instructor_id->id,
+                        'student_id' => $request->student,
+                        'pickup_address' => $request->adress,
+                        'pickup_postal_code' => $request->postcode,
+                        'pickup_city' => $request->city,
+                        'goal' => $request->goal,
+                        'start_date' => $request->start_date,
+                        'end_date' => $request->end_date,
+                    ]);
+                    // return response()->json($new_lesson);
+                    if ($new_lesson){
+                        return response()->json([
+                            'new_lesson' => $new_lesson,
+                            'status' => true,
+                            'message' => 'Nieuw les toegevoged!',
+                        ]);
+                    }
+                    else {
+                        return response()->json(array(
+                            'status' => false,
+                            'message' => 'Probeer op nieuw!',
+                        ));
+                    }
+                }
+                else
+                {
+                    return response()->json([
+                        'status' => 'same',
+                        'message' => 'Jij heeft een les op hetzelfde tijd!',
+                    ]);
+                }
+                return $request;
             }
 
             // Find the lesson id
@@ -93,13 +179,24 @@ class LessonController extends Controller
                 $lessons->pickup_postal_code = $request->postcode;
                 $lessons->pickup_city = $request->city;
                 $lessons->goal = $request->goal;
-                // $lessons->start_date = $request->start_date;
-                // $lessons->end_date = $request->end_date;
+                $lessons->start_date = $request->start_date;
+                $lessons->end_date = $request->end_date;
                 $lessons->result = $request->result;
                 $lessons->comment = $request->comment;
                 $lessons->update();
 
-                return response()->json($lessons);
+                if ($lessons){
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Les is gewijzigd!',
+                    ]);
+                }
+                else {
+                    return response()->json(array(
+                        'status' => false,
+                        'message' => 'Probeer op nieuw!',
+                    ));
+                }
             }
 
             // Delete the lesson
