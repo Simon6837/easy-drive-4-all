@@ -191,7 +191,7 @@
                         console.log("previousInstructor - current element: " + instructor.id + " next element: " + previousElement.id);
                         previousElement.style.display = "block";
                     }
-                    //Otherwise last first element from list
+                    //Otherwise grab last element from list
                     else {
                         var lastNumber = instructors.length - 1
                         previousElement = document.getElementById(idString + lastNumber);
