@@ -55,11 +55,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <label class="m-2 bold"> Les start 
+                                <label class="m-2 bold"> Les start
                                     <input type="datetime-local"  id="lesson_start" value="YYYY-MM-DD HH:mm:ss"><br>
                                     <span id="start_date" class="text-danger"></span>
                                 </label>
-                                
+
                                 <label class="m-2"> Les eind
                                     <input type="datetime-local"  id="lesson_end" value="YYYY-MM-DD HH:mm:ss"><br>
                                     <span id="end_date" class="text-danger"></span>
@@ -130,8 +130,8 @@
                                 <label class="m-2"> Les start </label><br>
                                     <input type="text"  id="edit_lesson_start"><br>
                                     <span id="edit_lesson_start" class="text-danger"></span>
-                                
-                                
+
+
                                 <label class="m-2"> Les eind </label><br>
                                     <input type="text" class="mb-4" id="edit_lesson_end"><br>
                                     <span id="edit_end_date" class="text-danger"></span>
@@ -279,9 +279,9 @@
                     });
 
                    });
-                    
+
                 },
-                
+
                 // Find data for edit
                 eventClick: function(event, delta)
                 {
@@ -311,7 +311,7 @@
                             $('#result').val(response.lesson.result);
                             $('#comment').val(response.lesson.comment);
                         }
-                        
+
                     });
                         // Update
                         $('#update').click(function(){
@@ -345,7 +345,7 @@
                                     {
                                         $('#editLessonModal').modal('hide');
                                         swal({
-                                            title: "Good jop!",
+                                            title: "Good job!",
                                             text: (data.message),
                                             icon: "success",
                                             button: "Ok!",
@@ -358,7 +358,7 @@
                                             calendar.fullCalendar('unselect');
                                             window.location.reload('#calendar')
                                     }
-                                    else 
+                                    else
                                     {
                                         $('#editLessonModal').modal('hide');
                                         swal({
