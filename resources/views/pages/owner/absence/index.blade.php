@@ -1,12 +1,15 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <div class="flex justify-center mx-auto pt-12">
         <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
             @if(Session::has('success'))
-            <div class="px-4 py-2 font-semibold bg-white">
-                <div class="text-green-400 text-center flex flex-col mb-4" role="alert">
-                    <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                </div>  
-            </div>
+                <script>
+                    swal({
+                        title: "{{Session::get('success')}}",
+                        icon: "success",
+                        button: "Ok!",
+                    });
+                </script>
             @endif
             <table class="border-collapse w-full">
                 <thead class="bg-gray-50">
@@ -15,28 +18,28 @@
                             <div class="flex">
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <p>Instructeur naam</p>
-                                </div>        
+                                </div>
                             </div>
                         </th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                             <div class="flex">
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <p>Reden</p>
-                                </div>        
+                                </div>
                             </div>
                         </th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                             <div class="flex">
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <p>Startdatum</p>
-                                </div>        
+                                </div>
                             </div>
                         </th>
                         <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                             <div class="flex">
                                 <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                     <p>Einddatum</p>
-                                </div>        
+                                </div>
                             </div>
                         </th>
                     </tr>

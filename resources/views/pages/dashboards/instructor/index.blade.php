@@ -5,6 +5,7 @@
                 @include('pages.dashboards.components.notificationCard')
                 @include('pages.dashboards.components.instructorAbsenceCard')
                 @include('pages.dashboards.components.profileCard')
+                @include('pages.dashboards.components.calendarCard')
             </div>
         </div>
     </section>
