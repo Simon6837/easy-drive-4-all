@@ -43,9 +43,15 @@ class AbsenceController extends Controller
     public function Active(request $request)
     {
         $instructor_id = $request->user()->instructor->id;
-        $absences = Absence::All()->where('end_date', null)->where('instructor_id', $instructor_id);
+        $now = Carbon::now()->addHour();
+        $activeAbsences = Absence::select("*")
+            ->where('end_date', '>', $now)
+            ->orWhere('end_date', '=', null)
+            ->get()->where('instructor_id', $instructor_id);
+        $pastAbsences = Absence::All()->where('end_date', '<', $now)
+            ->where('instructor_id', $instructor_id);
 
-        return view('pages.instructors.absence.active', compact('absences'));
+        return view('pages.instructors.absence.active', compact('activeAbsences', 'pastAbsences'));
     }
 
     /**
@@ -70,14 +76,14 @@ class AbsenceController extends Controller
         $data = $this->validate($request, [
             'reason' => 'required',
             'start_date' => 'required',
-            'end_date',
+            'end_date' => 'sometimes',
         ]);
 
         $data['instructor_id'] = $request->user()->instructor->id;
 
         Absence::create($data);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('activeabsences')
             ->with('success', 'Je ziektemelding is toegevoegd.');
     }
 
@@ -103,14 +109,14 @@ class AbsenceController extends Controller
     {
         $data = $request->validate([
             'reason' => 'required',
-            'end_date',
+            'end_date' => 'sometimes',
         ]);
         $data['instructor_id'] = $request->user()->instructor->id;
 
         $absence = Absence::find($request->id);
         $absence->update($data);
 
-        return redirect()->route('dashboard')
-            ->with('success', 'Je ziekmelding is geupdate');
+        return redirect()->route('activeabsences')
+            ->with('success', 'Je ziekmelding is bijgewerkt');
     }
 }

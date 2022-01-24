@@ -26,6 +26,9 @@
         <x-dropdown-link :href="route('profile')">
             Account
         </x-dropdown-link>
+        <x-dropdown-link :href="route('activeabsences')">
+            Ziekmelden
+        </x-dropdown-link>
         @endrole
         {{--        Menu items for students--}}
         @role('student')
