@@ -43,9 +43,15 @@ class AbsenceController extends Controller
     public function Active(request $request)
     {
         $instructor_id = $request->user()->instructor->id;
-        $absences = Absence::All()->where('end_date', null)->where('instructor_id', $instructor_id);
+        $now = Carbon::now()->addHour();
+        $activeAbsences = Absence::All()
+            ->where('end_date', null)
+            ->where('instructor_id', $instructor_id);
 
-        return view('pages.instructors.absence.active', compact('absences'));
+        $pastAbsences = Absence::All()
+            ->where('instructor_id', $instructor_id);
+
+        return view('pages.instructors.absence.active', compact('activeAbsences', 'pastAbsences'));
     }
 
     /**
