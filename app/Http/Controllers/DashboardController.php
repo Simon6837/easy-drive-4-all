@@ -35,6 +35,7 @@ class DashboardController extends Controller
             'instructorCount' => User::has('instructor')->with('instructor')->get()->where('active', '=', 1)->count(),
             'carCount' => Cars::count(),
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->count(),
+            'lessonsCount' => Lesson::count(),
         ];
         return view('pages.dashboards.owner.index', compact('data'));
     }
@@ -60,10 +61,19 @@ class DashboardController extends Controller
 
     private function studentDashboard()
     {
+        $user_id = Auth::id();
+        $student = DB::table('users')
+        ->join('students', 'users.id', '=', 'students.user_id')
+        ->where('students.user_id', '=', $user_id)
+        ->select('students.id')
+        ->first();
+
+        $sudent_id = $student->id;
         $now = Carbon::now();
         $nextWeek = Carbon::now()->addWeek();
         $data = [
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'leerling')->count(),
+            'lessonsCount' => Lesson::where('student_id', '=', $sudent_id)->count(),
         ];
         return view('pages.dashboards.student.index', compact('data'));
     }

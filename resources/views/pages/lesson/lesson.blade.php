@@ -43,6 +43,7 @@
     <!-- Container -->
       <div id="container" class="flex bg-gray-100 items-top justify-center min-h-screen bg-white sm:items-center sm:pt-0">
             <div class="w-1/2 mt-4 bg-white shadow shadow-gray-600 rounded-lg overflow-hidden">
+                @if( Auth::user()->hasRole('owner') ||  Auth::user()->hasRole('instructor'))
                 <!-- Add Modal -->
                 <div class="modal fade" id="lessonModal" tabindex="-1" aria-labelledby="lessonModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -91,6 +92,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- Edit Modal -->
                 <div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -107,7 +109,6 @@
                                     <label id="last_name" class="font-italic"></label>
                                 </div>
 
-
                                 <label class="m-2"> Les start </label><br>
                                     <input type="text"  id="edit_lesson_start"><br>
                                     <span id="edit_lesson_start" class="text-danger"></span>
@@ -120,34 +121,29 @@
                                 <p class="row-in-form">
                                     <label class="mt-2">Ophaal adres<span>*</span></label><br>
                                     <input type="text" id="edit_adress" class="mb-4 form-control"  name="edit_adress" placeholder="Ophaal adres">
-                                    {{-- @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror --}}
                                 </p>
 
                                 <hr />
                                 <p class="row-in-form">
                                     <label class="mt-2">Ophaal postcode<span>*</span></label><br>
                                     <input type="text" id="edit_postcode" class="mb-4 form-control"  name="edit_postcode" placeholder="Ophaal postcode">
-                                    {{-- @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror --}}
                                 </p>
 
                                 <hr />
                                 <p class="row-in-form">
                                     <label class="mt-2">Ophaal Stad<span>*</span></label><br>
                                     <input type="text" id="edit_city" class="mb-4 form-control"  name="edit_city" placeholder="Ophaal Stad">
-                                    {{-- @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror --}}
                                 </p>
                                 <hr />
                                 <p class="row-in-form">
                                     <label class="mt-2">Taak/en<span>*</span></label><br>
                                     <input type="text" id="edit_goal" class="mb-4 form-control"  name="edit_goal" placeholder="Taak">
-                                    {{-- @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror --}}
                                 </p>
 
                                 <hr />
                                 <p class="row-in-form">
                                     <label class="mt-2">Resultaat</label><br>
                                     <input type="text" id="result" class="mb-4 form-control"  name="result" placeholder="Resultaat">
-                                    {{-- @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror --}}
                                 </p>
 
                                 <hr class="red" />
@@ -161,8 +157,10 @@
                             <button type="button" id="update" class="btn btn-primary">Update</button>
 
                             <div class="modal-footer">
-                                <button type="button" id="delete" class="float-left btn btn-danger">Delete</button>
-                                <button type="button" id="edit_close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                @if( Auth::user()->hasRole('owner') ||  Auth::user()->hasRole('instructor'))
+                                    <button type="button" id="delete" class="float-left btn btn-danger">Delete</button>
+                                @endif
+                                <button type="button" id="edit_close" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload('#calendar');">Close</button>
                             </div>
                         </div>
                     </div>
@@ -180,7 +178,7 @@
                 },
             });
             var lessons = @json($lessons);
-            $('#calendar').fullCalendar({
+            var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev, next today',
                     center: 'title',
@@ -190,7 +188,13 @@
                 selectable: true,
                 selectHelper: true,
                 editable: true,
-                
+                eventRender: function (event, element, view) {
+                    if (event.allDay === 'true') {
+                    event.allDay = true;
+                    } else {
+                    event.allDay = false;
+                    }
+                },
                 select: function(start, end, allDay){
                    $('#lessonModal').modal('toggle');
 
@@ -219,21 +223,40 @@
                         },
                         success:function(data)
                         {
-                            $('#lessonModal').modal('hide');
-                            swal({
-                                    title: "Good job!",
-                                    text: "Les is ingepland!",
+                            if (data.status == 'same' || data.status == false)
+                            {
+                                $('#lessonModal').modal('hide');
+                                swal({
+                                    title: "Oops!",
+                                    text: (data.message),
+                                    icon: "error",
+                                    button: "Ok!",
+                                    });
+                            }
+                            else
+                            {
+                                $('#lessonModal').modal('hide');
+                                swal({
+                                    title: "Good jop!",
+                                    text: (data.message),
                                     icon: "success",
                                     button: "Ok!",
                                     });
-                            calendar.fullCalendar('renderEvent');
+                                    calendar.fullCalendar('renderEvent', {
+                                            id:data.id,
+                                            start: start_date,
+                                            end: end_date,
+                                        }, true);
+                                    calendar.fullCalendar('unselect');
+                            }
+
+
                         },
                         error:function(error)
                         {
 
                         },
                     });
-
 
                    });
                     
@@ -264,6 +287,7 @@
                             $('#result').val(response.lesson.result);
                             $('#comment').val(response.lesson.comment);
                         }
+                        
                     });
                         // Update
                         $('#update').click(function(){
@@ -273,6 +297,8 @@
                             var goal = $('#edit_goal').val();
                             var result = $('#result').val();
                             var comment = $('#comment').val();
+                            var start_date = $('#edit_lesson_start').val();
+                            var end_date = $('#edit_lesson_end').val();
                             $.ajax({
                                 url: "{{ route('lesson.option')}}",
                                 type: "POST",
@@ -285,18 +311,39 @@
                                     goal,
                                     result,
                                     comment,
+                                    start_date,
+                                    end_date,
                                     type: 'update'
                                 },
                                 success:function(data)
                                 {
-                                    $('#editLessonModal').modal('hide')
-                                    swal({
-                                        title: "Good job!",
-                                        text: "Les informatie is gewijzigd!",
-                                        icon: "success",
-                                        button: "Ok!",
-                                        });
-                                        $('#calendar').fullCalendar('renderEvent');
+                                    if (data.status == true)
+                                    {
+                                        $('#editLessonModal').modal('hide');
+                                        swal({
+                                            title: "Good jop!",
+                                            text: (data.message),
+                                            icon: "success",
+                                            button: "Ok!",
+                                            });
+                                            calendar.fullCalendar('renderEvent', {
+                                                id:data.id,
+                                                start: start_date,
+                                                end: end_date,
+                                            }, true);
+                                            calendar.fullCalendar('unselect');
+                                            window.location.reload('#calendar')
+                                    }
+                                    else 
+                                    {
+                                        $('#editLessonModal').modal('hide');
+                                        swal({
+                                            title: "Oops!",
+                                            text: (data.message),
+                                            icon: "error",
+                                            button: "Ok!",
+                                            });
+                                    }
                                 },
                                 error:function(error)
                                 {
@@ -324,7 +371,7 @@
                                         icon: "success",
                                         button: "Ok!",
                                         });
-                                        $('#calendar').fullCalendar('renderEvent');
+                                        $('#calendar').fullCalendar('removeEvents', event.id);
                                 },
                                 error:function(error)
                                 {
@@ -339,12 +386,9 @@
 
     </script>
     <script>
-        $('#lessonModal').on('hide', function() {
-            window.location.reload();
-        });
-        $('#editLessonModal').on('hide', function() {
-            window.location.reload();
-        });
+    function updateDiv() {
+        window.location.href + " #container";
+    }
     </script>
 </x-app-layout>
 </html>
