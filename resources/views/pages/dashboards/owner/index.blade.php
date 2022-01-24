@@ -9,6 +9,7 @@
                 @include('pages.dashboards.components.laratrustCard')
                 @include('pages.dashboards.components.ownerAbsenceCard')
                 @include('pages.dashboards.components.textCard')
+                @include('pages.dashboards.components.calendarCard')
             </div>
         </div>
     </section>
