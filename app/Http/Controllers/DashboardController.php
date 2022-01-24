@@ -36,7 +36,9 @@ class DashboardController extends Controller
             'carCount' => Cars::count(),
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->count(),
             'lessonsCount' => Lesson::where('start_date', '>=', $now)->count(),
-            'absenceCount' => Absence::all()->where('end_date', null)->count(),
+            'absenceCount' => Absence::select("*")
+                ->where('end_date', '>', $now)
+                ->orWhere('end_date', '=', null)->count(),
         ];
         return view('pages.dashboards.owner.index', compact('data'));
     }
@@ -56,7 +58,10 @@ class DashboardController extends Controller
         $data = [
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->count(),
             'lessonsCount' => Lesson::where('instructor_id', '=', $instructor_id)->where('start_date', '>=', $now)->count(),
-            'absenceCount' => Absence::all()->where('end_date', null)->where('instructor_id', '=', $user->instructor->id)->count(),
+            'absenceCount' => Absence::select("*")
+                ->where('end_date', '>', $now)
+                ->orWhere('end_date', '=', null)
+                ->get()->where('instructor_id', $instructor_id)->count(),
         ];
         return view('pages.dashboards.instructor.index', compact('data'));
     }
