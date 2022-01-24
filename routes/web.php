@@ -84,8 +84,9 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
 });
 
-// Instructor role
+//Instructors routes
 Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
+//idk what this does so i won't delete it
     //Ziekmeldingen
     Route::get('/absence/active', [AbsenceController::class, 'active'])->name('activeabsences');
     Route::get('/absence/create', [AbsenceController::class, 'create'])->name('absencecreate');
@@ -94,26 +95,8 @@ Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function
     Route::post('/absence/update', [AbsenceController::class, 'update'])->name('absenceupdate');
 });
 
-//Instructors routes
-Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
-//idk what this does so i won't delete it
-    // Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->name('lessonedit');
-    // Route::post('/lesson/store', [LessonController::class, 'store'])->name('lessonstore');
-    // Route::post('/lesson/update', [LessonController::class, 'update'])->name('lessonupdate');
-    // Route::get('/lesson/delete/{id}', [LessonController::class, 'destroy'])->name('lessondelete');
-
-    //Notifications crud
-    Route::get('/notifications/all', [NotificationsController::class, 'index'])->name('notificationsindex');
-    Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
-    Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
-    Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
-    Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
-    Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
-});
-
 //All users routes
-Route::group(['middleware' => ['role:owner|instructor|student', 'auth', 'verified']], function () {
-
+Route::group(['middleware' => ['auth', 'verified']], function () {
     //Lesson crud
     Route::get('/lessons', [LessonController::class, 'index'])->name('lessonindex');
     Route::get('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');

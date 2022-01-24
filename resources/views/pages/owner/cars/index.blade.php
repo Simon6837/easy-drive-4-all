@@ -1,4 +1,14 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if(Session::has('success'))
+        <script>
+            swal({
+                title: "{{Session::get('success')}}",
+                icon: "success",
+                button: "Ok!",
+            });
+        </script>
+    @endif
     <div class="flex justify-center mx-auto pt-12">
         <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
             <div class="px-4 py-2 font-semibold bg-white">
@@ -27,56 +37,56 @@
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Select</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Foto</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>ID</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Merk</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Model</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Type</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Kenteken</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Actie</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                 </tr>
