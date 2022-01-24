@@ -188,10 +188,9 @@
                     //Check if previous element in line exists                    
                     let previousElement = document.getElementById(idString + (+idNumber - 1));
                     if (previousElement != null) {
-                        console.log("previousInstructor - current element: " + instructor.id + " next element: " + previousElement.id);
                         previousElement.style.display = "block";
                     }
-                    //Otherwise last first element from list
+                    //Otherwise grab last element from list
                     else {
                         var lastNumber = instructors.length - 1
                         previousElement = document.getElementById(idString + lastNumber);
@@ -219,13 +218,11 @@
                     //Check if next element in line exists                    
                     let nextElement = document.getElementById(idString + (+idNumber + 1));
                     if (nextElement != null) {
-                        console.log("nextInstructor - current element: " + instructor.id + " next element: " + nextElement.id);
                         nextElement.style.display = "block";
                     }
                     //Otherwise grab first element from list
                     else {
                         nextElement = document.getElementById(idString + "0");
-                        console.log("nextInstructor - current element: " + instructor.id + " next element: " + nextElement.id);
                         nextElement.style.display = "block";
                     }
                     break;
