@@ -40,6 +40,9 @@
         <x-dropdown-link :href="route('notifications')">
             Meldingen
         </x-dropdown-link>
+        <x-dropdown-link :href="route('lessonindex')">
+            Kalender
+        </x-dropdown-link>
         <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                                 this.closest('form').submit();">
             {{ __('Loguit') }}

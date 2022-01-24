@@ -1,19 +1,20 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Owner\PDFController;
 use App\Http\Controllers\Instructor\AbsenceController;
 use App\Http\Controllers\Owner\CarsController;
+use App\Http\Controllers\Lesson\LessonController;
+use App\Http\Controllers\Owner\StudentController;
 use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
-use App\Http\Controllers\Owner\PDFController;
-use App\Http\Controllers\Owner\StudentController;
 use App\Http\Controllers\Owner\TextController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,14 +84,23 @@ Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
     Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
 });
 
-// Instructor role
+//Instructors routes
 Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
+//idk what this does so i won't delete it
     //Ziekmeldingen
     Route::get('/absence/active', [AbsenceController::class, 'active'])->name('activeabsences');
     Route::get('/absence/create', [AbsenceController::class, 'create'])->name('absencecreate');
     Route::get('/absence/edit/{id}', [AbsenceController::class, 'edit'])->name('absenceedit');
     Route::post('/absence/store', [AbsenceController::class, 'store'])->name('absencestore');
     Route::post('/absence/update', [AbsenceController::class, 'update'])->name('absenceupdate');
+});
+
+//All users routes
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    //Lesson crud
+    Route::get('/lessons', [LessonController::class, 'index'])->name('lessonindex');
+    Route::get('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
+    Route::post('/lessons/option', [LessonController::class, 'option'])->name('lesson.option');
 });
 
 //Get notification per role

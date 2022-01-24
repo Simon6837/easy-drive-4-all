@@ -1,11 +1,16 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <div class="flex justify-center mx-auto pt-12">
         <div class="w-11/12 lg:w10/12 xl:w-9/12 shadow rounded-lg border-gray-200 mb-8 overflow-hidden">
             <div class="px-4 py-2 font-semibold bg-white">
                 @if(Session::has('success'))
-                <div class="text-green-400 text-center flex flex-col mb-4" role="alert">
-                    <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                </div>
+                    <script>
+                        swal({
+                            title: "{{Session::get('success')}}",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    </script>
                 @endif
                 <div class="md:flex flex-row w-full justify-center lg:justify-start lg:w-10/12 xl:w-8/12 2xl:w-6/12">
                     <div class="basis-3/6 md:mr-4">
@@ -32,49 +37,49 @@
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Select</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>ID</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Role</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Title</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Notificatie</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Geldig tot</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-500 hidden lg:table-cell">
                         <div class="flex">
                             <div class="basis-4/6 md:basis-5/6 px-3 py-2 flex justify-center">
                                 <p>Actie</p>
-                            </div>        
+                            </div>
                         </div>
                     </th>
                 </tr>
