@@ -158,19 +158,32 @@
                                     <input type="text" id="edit_goal" class="mb-4 form-control"  name="edit_goal" placeholder="Taak">
                                 </p>
 
+                                
+                                @if( Auth::user()->hasRole('student'))
                                 <hr />
                                 <p class="row-in-form">
                                     <label class="mt-2">Resultaat</label><br>
-                                    <input type="text" id="result" class="mb-4 form-control"  name="result" placeholder="Resultaat">
+                                    <input type="text" id="result" class="mb-4 form-control" disabled name="result" placeholder="Resultaat">
                                 </p>
 
                                 <hr class="red" />
                                 <p class="row-in-form">
                                     <label class="mt-2">Commentaar</label><br>
-                                    <input type="text" id="comment" class="mb-4 form-control"  name="comment" placeholder="Commentaar">
-                                    @error('lastname') <span class="text-danger"> {{ $message}} </span> @enderror
+                                    <input type="text" id="comment" class="mb-4 form-control" disabled name="comment" placeholder="Commentaar">
+                                </p>
+                                @else
+                                <hr />
+                                <p class="row-in-form">
+                                    <label class="mt-2">Resultaat</label><br>
+                                    <input type="text" id="result" class="mb-4 form-control" name="result" placeholder="Resultaat">
                                 </p>
 
+                                <hr class="red" />
+                                <p class="row-in-form">
+                                    <label class="mt-2">Commentaar</label><br>
+                                    <input type="text" id="comment" class="mb-4 form-control" name="comment" placeholder="Commentaar">
+                                </p>
+                                @endif
                             </div>
                             <button type="button" id="update" class="btn btn-primary">Update</button>
 
