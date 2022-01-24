@@ -5,8 +5,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -70,6 +71,15 @@
                                         <option value="{{$student->id}}">{{$student->first_name}} {{$student->last_name}}</option>
                                     @endforeach
                                 </select>
+                                @if( Auth::user()->hasRole('owner'))
+                                <select id="instructor" class="mt-4 form-select" aria-label="Default select lesson">
+                                    <option selected disabled value="0">Select instructor</option>
+                                    @foreach ($all_instructors as $instructor)
+                                        <option value="{{$instructor->id}}">{{$instructor->first_name}} {{$instructor->last_name}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+
                                 <span id="student_error" class="text-danger"></span>
 
                                 <input type="text" name="adress" class="mt-4 form-control" placeholder="Adres" id="adress">
@@ -108,6 +118,14 @@
                                     <label id="first_name" class="font-italic"></label>
                                     <label id="last_name" class="font-italic"></label>
                                 </div>
+
+                                @if( Auth::user()->hasRole('owner'))
+                                <div>
+                                    <label class="font-weight-bold">Leerling Naam:</label>
+                                    <label id="instructor_first_name" class="font-italic"></label>
+                                    <label id="instructor_last_name" class="font-italic"></label>
+                                </div>
+                                @endif
 
                                 <label class="m-2"> Les start </label><br>
                                     <input type="text"  id="edit_lesson_start"><br>
@@ -201,6 +219,7 @@
                    // Add new les
                    $('#saveBtn').click(function(){
                     var student = $('#student').val();
+                    var instructor = $('#instructor').val();
                     var adress = $('#adress').val();
                     var postcode = $('#postcode').val();
                     var city = $('#city').val();
@@ -213,6 +232,7 @@
                         dataType: 'json',
                         data: {
                             student,
+                            instructor,
                             adress,
                             postcode,
                             city,
@@ -278,6 +298,10 @@
                         {
                             $('#first_name').text(response.student_firstName);
                             $('#last_name').text(response.student_lastName);
+
+                            $('#instructor_first_name').text(response.instructor_firstName);
+                            $('#instructor_last_name').text(response.instructor_lastName);
+
                             $('#edit_adress').val(response.lesson.pickup_address);
                             $('#edit_postcode').val(response.lesson.pickup_postal_code);
                             $('#edit_city').val(response.lesson.pickup_city);
