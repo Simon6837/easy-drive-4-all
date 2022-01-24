@@ -17,11 +17,17 @@
         <x-dropdown-link :href="route('carsindex')">
             Auto's
         </x-dropdown-link>
+        <x-dropdown-link :href="route('textindex')">
+            Teksten
+        </x-dropdown-link>
         @endrole
         {{--        Menu items for instructors--}}
         @role('instructor')
         <x-dropdown-link :href="route('profile')">
             Account
+        </x-dropdown-link>
+        <x-dropdown-link :href="route('activeabsences')">
+            Ziekmelden
         </x-dropdown-link>
         @endrole
         {{--        Menu items for students--}}

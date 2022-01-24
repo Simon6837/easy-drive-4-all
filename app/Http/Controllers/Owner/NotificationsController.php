@@ -95,8 +95,11 @@ class NotificationsController extends Controller
      */
     public function destroy($id)
     {
-        $notification = Notifications::find($id);
-        $notification->delete();
+        foreach (explode(",", $id) as $value) 
+        {         
+            $notification = Notifications::find($value);
+            $notification->delete();
+        }
 
         return redirect()->route('notifications')
             ->with('Success', 'De melding is verwijderd');

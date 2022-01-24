@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Absence;
 use App\Models\Cars;
 use App\Models\User;
 use App\Models\Lesson;
@@ -19,7 +19,7 @@ class DashboardController extends Controller
             return $this->ownerDashboard();
         }
         if ($request->user()->hasRole('instructor')) {
-            return $this->instructorDashboard();
+            return $this->instructorDashboard($request->user());
         }
         if ($request->user()->hasRole('student')) {
             return $this->studentDashboard();
@@ -36,11 +36,12 @@ class DashboardController extends Controller
             'carCount' => Cars::count(),
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->count(),
             'lessonsCount' => Lesson::count(),
+            'absenceCount' => Absence::all()->where('end_date', null)->count(),
         ];
         return view('pages.dashboards.owner.index', compact('data'));
     }
 
-    private function instructorDashboard()
+    private function instructorDashboard($user)
     {
         $user_id = Auth::id();
         $instructor = DB::table('users')
@@ -55,6 +56,7 @@ class DashboardController extends Controller
         $data = [
             'notificationCount' => Notifications::whereBetween('valid_until', [$now, $nextWeek])->where('role', '=', 'instructeur')->count(),
             'lessonsCount' => Lesson::where('instructor_id', '=', $instructor_id)->count(),
+            'absenceCount' => Absence::all()->where('end_date', null)->where('instructor_id', '=', $user->instructor->id)->count(),
         ];
         return view('pages.dashboards.instructor.index', compact('data'));
     }

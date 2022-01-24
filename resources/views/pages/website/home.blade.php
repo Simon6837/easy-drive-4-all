@@ -1,4 +1,5 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <header class="bg-gray-800" x-data="{ isOpen: false }">
         <section class="flex items-center justify-center" style="height: 300px;">
             <div class="text-center">
@@ -18,46 +19,75 @@
             <div class="items-center">
                 <div class="w-full">
                     <h2 class="text-3xl font-semibold text-gray-800">Over ons</h2>
-                    <p class=" mt-4 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus
-                        tortor, facilisis sed massa vel, malesuada mollis erat. Nullam sed rutrum erat. Praesent sit
-                        amet dolor euismod, mollis leo non, tristique arcu. Pellentesque et fermentum tellus, vel
-                        dignissim mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                        mus. Fusce ac lorem vitae ante molestie sodales et fringilla sapien. Proin elementum lectus ac
-                        mi posuere malesuada. Nam lacinia tristique quam, volutpat porta augue sodales quis. Curabitur
-                        fringilla nibh sit amet leo aliquet tincidunt. Proin tempor sit amet enim sit amet sollicitudin.
-                        Cras eu vulputate purus.
-
-                        Curabitur augue arcu, semper sed placerat at, vestibulum ac urna. Praesent rutrum diam sed
-                        euismod euismod. In non tortor ut lectus varius finibus. Phasellus suscipit dapibus felis quis
-                        tempus. In commodo diam leo, eu porta enim ullamcorper sed. Nullam in tellus ac odio euismod
-                        tempus vel vel urna. Maecenas euismod scelerisque nibh malesuada pretium. Etiam facilisis
-                        ullamcorper rhoncus. Aliquam et tincidunt mauris, at egestas augue. Vestibulum gravida consequat
-                        consequat. Vivamus sed luctus sem, quis pretium velit.</p> <br>
-                    <a class="block w-full px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
-                       href="/contact">Vragen? Stuur ons een berichtje!</a>
+                    <p class="mt-4 text-gray-600">{{$text->text}}
+                        <div class="mt-4">
+                            <a class="block w-full px-8 py-2 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
+                            href="/contact">Vragen? Stuur ons een berichtje!</a>
+                        </div>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="mt-5 bg-gray-100">
-        <div id="team" class="bg-white max-w-5xl px-6 py-16 mx-auto text-center shadow rounded-lg">
-            <h2 class="text-3xl font-semibold text-gray-800">Onze instructeurs</h2>
-            <p class="max-w-lg mx-auto mt-4 text-gray-600">Speciaal opgeleid om u te leren rijden</p>
-            <div class="grid gap-8 mt-6 md:grid-cols-2 lg:grid-cols-4">
-                @foreach($instructors as $instructor)
-                    <div>
-                        @if($instructor->instructor->image)
-                            <img style="height: 220px" class="object-cover object-center rounded-full"
-                                 src="/assets/images/instructors/{{ $instructor->instructor->image }}">
-                        @else
-                            <img style="height: 220px" class="object-cover object-center rounded-full"
-                                 src="assets/placeholders/User.png">
-                        @endif
-                        <h3 class="mt-2 font-medium text-gray-700">{{$instructor->first_name}} {{$instructor->prefix}} {{$instructor->last_name}}</h3>
-                        <p class="text-sm text-gray-600">{{$instructor->instructor->description}}</p>
+        <div id="team" class="bg-white max-w-5xl px-6 py-16 mx-auto shadow rounded-lg">
+            <div class="mb-6">
+                <h2 class="text-3xl font-semibold text-gray-800">Onze instructeurs</h2>
+                <p class="max-w-lg mt-4 text-gray-600">Speciaal opgeleid om u te leren rijden</p>
+            </div>
+            <div class="w-full flex">
+                <div class="basis-1/8">
+                    <div class="w-full h-full flex justify-center items-center">
+                        <a onclick="previousInstructor()">
+                            <i class="text-indigo-600 hover:text-indigo-500 fas fa-arrow-circle-left fa-4x cursor-pointer"></i>
+                        </a>
                     </div>
-                @endforeach
+                </div>
+                <div class="grow p-5">
+                    @for ($i = 0; $i < count($instructors); $i++)
+                    @if($i == 0)
+                    <div id="instructor-{{$i}}" class="instructors-overview">
+                        <div class="flex flex-col justify-center items-center">
+                            <div class="flex justify-center items-center">
+                            @if($instructors[$i]->instructor->image)
+                                <img class="h-64 w-64 object-cover object-center rounded-full"
+                                        src="/assets/images/instructors/{{ $instructors[$i]->instructor->image }}">
+                            @else
+                                <img class="h-64 w-64 object-cover object-center rounded-full"
+                                        src="assets/placeholders/User.png">
+                            @endif
+                            </div>
+                            <h3 class="mt-4 font-medium text-gray-700">{{$instructors[$i]->first_name}} {{$instructors[$i]->prefix}} {{$instructors[$i]->last_name}}</h3>
+                            <p class="mt-2 text-sm text-gray-600">{{$instructors[$i]->instructor->description}}</p>
+                        </div>
+                    </div>
+                    @else
+                    <div id="instructor-{{$i}}" class="instructors-overview hidden">
+                        <div class="flex flex-col justify-center items-center">
+                            <div class="flex justify-center items-center">
+                            @if($instructors[$i]->instructor->image)
+                                <img class="h-64 w-64 object-cover object-center rounded-full"
+                                        src="/assets/images/instructors/{{ $instructors[$i]->instructor->image }}">
+                            @else
+                                <img class="h-64 w-64 object-cover object-center rounded-full"
+                                        src="assets/placeholders/User.png">
+                            @endif
+                            </div>
+                            <h3 class="mt-4 font-medium text-gray-700">{{$instructors[$i]->first_name}} {{$instructors[$i]->prefix}} {{$instructors[$i]->last_name}}</h3>
+                            <p class="mt-2 text-sm text-gray-600">{{$instructors[$i]->instructor->description}}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @endfor
+                </div>
+                <div class="basis-1/8">
+                    <div class="w-full h-full flex justify-center items-center">
+                        <a onclick="nextInstructor()">
+                            <i class="text-indigo-600 hover:text-indigo-500 fas fa-arrow-circle-right fa-4x cursor-pointer"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -66,9 +96,13 @@
         <div class="bg-white max-w-5xl px-6 py-16 mx-auto rounded-lg shadow">
             <div class="items-center">
                 @if(Session::has('success'))
-                    <div class="text-green-400 text-center flex flex-col" role="alert">
-                        <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                    </div>
+                    <script>
+                        swal({
+                            title: "{{Session::get('success')}}",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    </script>
                 @endif
                 <form method="POST" action="{{ route('signup') }}" id="signup"
                       class="w-full bg-white rounded p-6 space-y-4">
@@ -128,7 +162,7 @@
                     @endif
                     <div>
                         <button type="submit"
-                                class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">
+                                class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-sm font-bold transition duration-200">
                             Meld je aan
                         </button>
                     </div>
@@ -136,5 +170,70 @@
             </div>
         </div>
     </section>
+
+    <div class="container h-24 mb-4"></div>
+
+    <script>
+        const instructors = document.getElementsByClassName("instructors-overview");
+
+        //Show previous instructor
+        function previousInstructor() {
+            for (var i = 0; i < instructors.length; i++) {
+
+                let instructor = instructors[i];
+                let idString = "instructor-";
+                let idNumber = instructor.id.replace(idString,'');
+                let style = window.getComputedStyle(instructor);
+
+                //Get element that is currently being shown
+                if (style.display === 'block') {
+                    //Hide it
+                    instructor.style.display = "none";
+
+                    //Check if previous element in line exists
+                    let previousElement = document.getElementById(idString + (+idNumber - 1));
+                    if (previousElement != null) {
+                        previousElement.style.display = "block";
+                    }
+                    //Otherwise grab last element from list
+                    else {
+                        var lastNumber = instructors.length - 1
+                        previousElement = document.getElementById(idString + lastNumber);
+                        previousElement.style.display = "block";
+                    }
+                    break;
+                }
+            }
+        }
+
+        //Show next instructor
+        function nextInstructor() {
+            for (var i = 0; i < instructors.length; i++) {
+
+                let instructor = instructors[i];
+                let idString = "instructor-";
+                let idNumber = instructor.id.replace(idString,'');
+                let style = window.getComputedStyle(instructor);
+
+                //Get element that is currently being shown
+                if (style.display === 'block') {
+                    //Hide it
+                    instructor.style.display = "none";
+
+                    //Check if next element in line exists
+                    let nextElement = document.getElementById(idString + (+idNumber + 1));
+                    if (nextElement != null) {
+                        nextElement.style.display = "block";
+                    }
+                    //Otherwise grab first element from list
+                    else {
+                        nextElement = document.getElementById(idString + "0");
+                        nextElement.style.display = "block";
+                    }
+                    break;
+                }
+            }
+        }
+    </script>
 </x-app-layout>
 

@@ -63,21 +63,24 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $currentTime = Carbon::now();
-        $user = User::find($id);
-        $user->first_name = 'deleted';
-        $user->prefix = '';
-        $user->last_name = '';
-        $user->email = $currentTime->toDateTimeString();
-        $user->active = 0;
-        $user->student->address = 'deleted';
-        $user->student->city = 'deleted';
-        $user->student->postal_code = 'deleted';
-        $user->student->lessons_to_go = 0;
-        $user->save();
-        $user->student->save();
+        foreach (explode(",", $id) as $value) 
+        {
+            $currentTime = Carbon::now();
+            $user = User::find($id);
+            $user->first_name = 'deleted';
+            $user->prefix = '';
+            $user->last_name = '';
+            $user->email = $currentTime->toDateTimeString().$value;
+            $user->active = 0;
+            $user->student->address = 'deleted';
+            $user->student->city = 'deleted';
+            $user->student->postal_code = 'deleted';
+            $user->student->lessons_to_go = 0;
+            $user->save();
+            $user->student->save();
+        }
 
         return redirect()->route('studentindex')
-            ->with('Success', 'Auto is verwijderd');
+            ->with('Success', 'Student is verwijderd');
     }
 }

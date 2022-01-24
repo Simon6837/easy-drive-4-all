@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <form method="POST" action="{{ route('contact.store') }}" class="p-6 flex flex-col justify-center">
+                    <form method="POST" action="{{ route('contactsend') }}" class="p-6 flex flex-col justify-center">
                         @csrf
                         <div class="flex flex-col">
                             <label for="name" class="hidden">Full Name</label>
@@ -100,7 +100,7 @@
                         </div>
 
                         <button id="store" type="submit"
-                                class="md:w-32 bg-indigo-600 bg-blue-dark hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-300 transition ease-in-out duration-300">
+                                class="md:w-32 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg mt-3 transition ease-in-out duration-300">
                             Submit
                         </button>
                     </form>

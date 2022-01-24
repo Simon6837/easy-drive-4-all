@@ -13,7 +13,7 @@ class InstructorController extends Controller
 {
     public function index()
     {
-        $instructors = User::has('instructor')->with('instructor')->get()->where('active', '=', 1);;
+        $instructors = User::has('instructor')->with('instructor')->get()->where('active', '=', 1);
         return view('pages.owner.instructors.index', compact('instructors'));
     }
 
@@ -76,20 +76,23 @@ class InstructorController extends Controller
 
     public function destroy($id)
     {
-        $currentTime = Carbon::now();
-        $user = User::find($id);
-        $user->first_name = 'deleted';
-        $user->prefix = '';
-        $user->last_name = '';
-        $user->email = $currentTime->toDateTimeString();
-        $user->active = 0;
-        $user->instructor->address = 'deleted';
-        $user->instructor->city = 'deleted';
-        $user->instructor->postal_code = 'deleted';
-        $user->instructor->description = 0;
-        $user->instructor->image = '';
-        $user->save();
-        $user->instructor->save();
+        foreach (explode(",", $id) as $value) 
+        {
+            $currentTime = Carbon::now();
+            $user = User::find($value);
+            $user->first_name = 'deleted';
+            $user->prefix = '';
+            $user->last_name = '';
+            $user->email = $currentTime->toDateTimeString().$value;
+            $user->active = 0;
+            $user->instructor->address = 'deleted';
+            $user->instructor->city = 'deleted';
+            $user->instructor->postal_code = 'deleted';
+            $user->instructor->description = 0;
+            $user->instructor->image = '';
+            $user->save();
+            $user->instructor->save();
+        }
 
         return redirect()->route('instructorsindex')
             ->with('success', 'De instructeur is verwijderd');

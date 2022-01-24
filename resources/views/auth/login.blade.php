@@ -1,9 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+        <x-slot name="logo" class="align-content-center items-center justify-between">
+                <a href="/"><img class="spin m-2 h-14 fill-current" src="{{URL('assets/logo-short.jpg')}}"></a>
         </x-slot>
 
         <!-- Session Status -->
@@ -14,6 +12,11 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+                <div style="margin: 0 auto">
+                    <h1 class="font-bold text-black transition-colors duration-300 transform md:text-2xl align-content-center">Welkom bij EasyDrive4All
+                        <br>Log in om verder te gaan!</h1>
+                    <br>
+                </div>
 
             <!-- Email Address -->
             <div>
@@ -24,7 +27,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('Wachtwoord')" />
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -36,14 +39,14 @@
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Gegevens onthouden') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Wachtwoord vergeten?') }}
                     </a>
                 @endif
 
