@@ -76,14 +76,14 @@ class AbsenceController extends Controller
         $data = $this->validate($request, [
             'reason' => 'required',
             'start_date' => 'required',
-            'end_date',
+            'end_date' => 'sometimes',
         ]);
 
         $data['instructor_id'] = $request->user()->instructor->id;
 
         Absence::create($data);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('activeabsences')
             ->with('success', 'Je ziektemelding is toegevoegd.');
     }
 
@@ -109,14 +109,14 @@ class AbsenceController extends Controller
     {
         $data = $request->validate([
             'reason' => 'required',
-            'end_date',
+            'end_date' => 'sometimes',
         ]);
         $data['instructor_id'] = $request->user()->instructor->id;
 
         $absence = Absence::find($request->id);
         $absence->update($data);
 
-        return redirect()->route('dashboard')
-            ->with('success', 'Je ziekmelding is geupdate');
+        return redirect()->route('activeabsences')
+            ->with('success', 'Je ziekmelding is bijgewerkt');
     }
 }

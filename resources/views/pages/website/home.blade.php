@@ -1,4 +1,5 @@
 <x-app-layout>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <header class="bg-gray-800" x-data="{ isOpen: false }">
         <section class="flex items-center justify-center" style="height: 300px;">
             <div class="text-center">
@@ -84,7 +85,7 @@
                     <div class="w-full h-full flex justify-center items-center">
                         <a onclick="nextInstructor()">
                             <i class="text-indigo-600 hover:text-indigo-500 fas fa-arrow-circle-right fa-4x cursor-pointer"></i>
-                        </a>                  
+                        </a>
                     </div>
                 </div>
             </div>
@@ -95,9 +96,13 @@
         <div class="bg-white max-w-5xl px-6 py-16 mx-auto rounded-lg shadow">
             <div class="items-center">
                 @if(Session::has('success'))
-                    <div class="text-green-400 text-center flex flex-col" role="alert">
-                        <h1 class="title-font text-2xl font-bold">{{Session::get('success')}}</h1>
-                    </div>
+                    <script>
+                        swal({
+                            title: "{{Session::get('success')}}",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    </script>
                 @endif
                 <form method="POST" action="{{ route('signup') }}" id="signup"
                       class="w-full bg-white rounded p-6 space-y-4">
@@ -185,7 +190,7 @@
                     //Hide it
                     instructor.style.display = "none";
 
-                    //Check if previous element in line exists                    
+                    //Check if previous element in line exists
                     let previousElement = document.getElementById(idString + (+idNumber - 1));
                     if (previousElement != null) {
                         previousElement.style.display = "block";
@@ -197,7 +202,7 @@
                         previousElement.style.display = "block";
                     }
                     break;
-                }      
+                }
             }
         }
 
@@ -215,7 +220,7 @@
                     //Hide it
                     instructor.style.display = "none";
 
-                    //Check if next element in line exists                    
+                    //Check if next element in line exists
                     let nextElement = document.getElementById(idString + (+idNumber + 1));
                     if (nextElement != null) {
                         nextElement.style.display = "block";
@@ -226,7 +231,7 @@
                         nextElement.style.display = "block";
                     }
                     break;
-                }      
+                }
             }
         }
     </script>
