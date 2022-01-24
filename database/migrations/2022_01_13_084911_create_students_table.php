@@ -16,8 +16,10 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->tinyInteger('examen')->default(0);
-
+            $table->string('address');
+            $table->string('city');
+            $table->string('postal_code');
+            $table->integer('lessons_to_go');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

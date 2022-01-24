@@ -1,7 +1,16 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Instructor\AbsenceController;
 use App\Http\Controllers\Owner\CarsController;
+use App\Http\Controllers\owner\InstructorController;
 use App\Http\Controllers\Owner\NotificationsController;
+use App\Http\Controllers\Owner\PDFController;
+use App\Http\Controllers\Owner\StudentController;
+use App\Http\Controllers\Owner\TextController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -17,35 +26,79 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-//Website
-Route::get('/', function () { return view('/pages.website.home');})->name('home');
-Route::get('/home', function () { return view('/pages.website.home');})->name('homepage');
+//Website routes
+//home page
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', function () {
+    return redirect(route('home'));
+})->name('homepage');
+//signup request
 Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
-Route::get('/autos', function () { return view('/pages.website.cars');})->name('cars');
-Route::get('/over-ons', function () { return view('/pages.website.aboutus');})->name('aboutus');
-Route::get('/diensten', function () { return view('/pages.website.services');})->name('services');
+//info pages
+Route::get('/our-cars', [CarController::class, 'index'])->name('cars');
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('aboutus');
+//contact page
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendContactMail'])->name('contactsend');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact'); 
-Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact.store');
+//Owner routes
+Route::group(['middleware' => ['role:owner', 'auth', 'verified']], function () {
+    //Cars crud
+    Route::get('/cars', [CarsController::class, 'index'])->name('carsindex');
+    Route::get('/cars/create', [CarsController::class, 'create'])->name('carscreate');
+    Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('carsedit');
+    Route::post('/cars/store', [CarsController::class, 'store'])->name('carsstore');
+    Route::post('/cars/update', [CarsController::class, 'update'])->name('carsupdate');
+    Route::get('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('carsdelete');
+    //Students crud
+    Route::get('/students', [StudentController::class, 'index'])->name('studentindex');
+    Route::get('/student/create', [StudentController::class, 'create'])->name('studentcreate');
+    Route::get('/student/edit/{id}', [StudentController::class, 'edit'])->name('studentedit');
+    Route::post('/student/store', [StudentController::class, 'store'])->name('studentstore');
+    Route::post('/student/update', [StudentController::class, 'update'])->name('studentupdate');
+    Route::get('/student/delete/{id}', [StudentController::class, 'destroy'])->name('studentdelete');
+    //instructors crud
+    Route::get('/instructors', [InstructorController::class, 'index'])->name('instructorsindex');
+    Route::get('/instructor/create', [InstructorController::class, 'create'])->name('instructorcreate');
+    Route::get('/instructor/edit/{id}', [InstructorController::class, 'edit'])->name('instructoredit');
+    Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructorstore');
+    Route::post('/instructor/update', [InstructorController::class, 'update'])->name('instructorupdate');
+    Route::get('/instructor/delete/{id}', [InstructorController::class, 'destroy'])->name('instructordelete');
+    //Notifications crud
+    Route::get('/notifications/all', [NotificationsController::class, 'index'])->name('notificationsindex');
+    Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
+    Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
+    Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
+    Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
+    Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+    //pdf export
+    Route::get('generate-cars', [PDFController::class, 'generateCarsPDF'])->name('generatecars');
+    Route::get('generate-instructors', [PDFController::class, 'generateInstructorsPDF'])->name('generateinstructors');
+    Route::get('generate-students', [PDFController::class, 'generateStudentsPDF'])->name('generatestudents');
+    //Text table and edit
+    Route::get('texts', [TextController::class, 'index'])->name('textindex');
+    Route::get('text/edit/{id}', [TextController::class, 'edit'])->name('textedit');
+    Route::post('text/update', [TextController::class, 'update'])->name('textupdate');
+    //Ziekmeldingen
+    Route::get('/absence/owner', [AbsenceController::class, 'ownerIndex'])->name('allabsence');
+});
 
-//cars crud
-Route::get('/cars', [CarsController::class, 'index'])->name('carsindex');
-Route::get('/cars/create', [CarsController::class, 'create'])->name('carscreate');
-Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('carsedit');
-Route::post('/cars/store', [CarsController::class, 'store'])->name('carsstore');
-Route::post('/cars/update', [CarsController::class, 'update'])->name('carsupdate');
-Route::get('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('carsdelete');
+// Instructor role
+Route::group(['middleware' => ['role:instructor', 'auth', 'verified']], function () {
+    //Ziekmeldingen
+    Route::get('/absence/active', [AbsenceController::class, 'active'])->name('activeabsences');
+    Route::get('/absence/create', [AbsenceController::class, 'create'])->name('absencecreate');
+    Route::get('/absence/edit/{id}', [AbsenceController::class, 'edit'])->name('absenceedit');
+    Route::post('/absence/store', [AbsenceController::class, 'store'])->name('absencestore');
+    Route::post('/absence/update', [AbsenceController::class, 'update'])->name('absenceupdate');
+});
 
-//Notifications crud
-Route::get('/notifications', [NotificationsController::class, 'index'])->name('notificationsindex');
-Route::get('/notifications/create', [NotificationsController::class, 'create'])->name('notificationscreate');
-Route::get('/notifications/edit/{id}', [NotificationsController::class, 'edit'])->name('notificationsedit');
-Route::post('/notifications/store', [NotificationsController::class, 'store'])->name('notificationsstore');
-Route::post('/notifications/update', [NotificationsController::class, 'update'])->name('notificationsupdate');
-Route::get('/notifications/delete/{id}', [NotificationsController::class, 'destroy'])->name('notificationsdelete');
+//Get notification per role
+Route::get('/notifications', [NotificationsController::class, 'getFromRole'])->name('notifications');
+//Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+//Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['role:student|instructor', 'auth'])->name('profile');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+//Auth routes
+require __DIR__ . '/auth.php';
